@@ -13,6 +13,7 @@
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [React](https://reactjs.org)
+- [Scss](https://sass-lang.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## Como executar
