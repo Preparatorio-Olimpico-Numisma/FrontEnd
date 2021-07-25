@@ -1,0 +1,47 @@
+#Depoiments {
+  position: relative;
+
+  .DepoimentsWave {
+    position: relative;
+    svg {
+      position: absolute;
+      bottom: 0rem;
+      width: 100%;
+    }
+  }
+
+  .DepoimentsContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 70%;
+    }
+
+    > div {
+      max-width: 528px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      > div {
+        width: 63px;
+        height: 7px;
+        background-color: var(--Purple-Dark);
+        border-radius: 2rem;
+        margin-top: 24px;
+        margin-bottom: 68px;
+      }
+      h1 {
+        color: var(--Deep-Blue);
+        font-size: 2.2rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 26px;
+      }
+    }
+  }
+}

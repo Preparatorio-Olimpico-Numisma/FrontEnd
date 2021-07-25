@@ -1,0 +1,18 @@
+#Curse {
+  background: linear-gradient(var(--Purple-Dark), rgba(255, 255, 255, 0)), var(--Deep-Blue);
+  .CurseContent {
+    margin: 8.3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--White);
+    position: relative;
+  }
+  padding-bottom: 10%;
+}
+
+@media(max-width: 1000px) {
+  #Curse {
+    padding-bottom: 1%;
+  }
+}

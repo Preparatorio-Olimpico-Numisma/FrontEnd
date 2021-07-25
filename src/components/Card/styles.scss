@@ -1,0 +1,116 @@
+.card {
+  max-width: 370px;
+  max-height: 355px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#2400ff, #00c3ff);
+  border-radius: 5%;
+}
+
+.cardContent {
+  background: linear-gradient(#00c2ff, #2400ff);
+  border-radius: 5%;
+  width: 97%;
+  height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 40px;
+  color: var(--White);
+  h1 {
+    font-size: 18px;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Description {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    width: 100%;
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.cardImage {
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+.SquadImageContainer {
+  position: relative;
+  height: 125px;
+  width: 125px;
+  .SquadImageItem {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      left: -5px;
+
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
+      border-radius: 50%;
+      background: linear-gradient(
+        #2400ff 1%,
+        rgba(255, 255, 255, 0.5) 50%,
+        #00C2FF 100%
+      );
+    }
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .card {
+    max-width: 270px;
+    max-height: 255px;
+  }
+
+  .cardContent {
+    gap: 0.5rem;
+    padding: 1rem 1rem;
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1rem;
+      font-weight: normal;
+      width: 100%;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+  .cardImage {
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+}

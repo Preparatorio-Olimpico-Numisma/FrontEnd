@@ -1,0 +1,144 @@
+#Header {
+  width: 100%;
+  min-height: 72.8px;
+  height: 100%;
+  position: relative;
+  z-index: 999;
+  a,
+  p {
+    color: var(--gray);
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  > nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    background: #fff;
+    padding: 10px 0;
+
+    a:hover,
+    a:focus,
+    a:active {
+      border-bottom: 3px solid var(--Deep-Blue);
+    }
+
+    div:first-child {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-left: 5px;
+      }
+    }
+
+    > ul {
+      display: flex;
+      justify-content: space-between;
+      min-width: 50%;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+
+      width: 9.8rem;
+      height: 3.3rem;
+      border-radius: 2rem;
+
+      background: linear-gradient(var(--Purple-Dark), #ffffff00), var(--Deep-Blue);
+      color: #fff;
+
+      font-family: "Poppins";
+      font-weight: bold;
+      font-size: 1rem;
+
+      transition: filter 0.2s;
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
+
+  .DropDowContainer {
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      overflow: visible;
+    }
+
+    &:hover ul {
+      border: 1px solid var(--gray);
+      border-radius: 0.5rem;
+      width: 100%;
+    }
+
+    > li {
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      img {
+        margin-top: 2px;
+        margin-left: 5px;
+      }
+    }
+  }
+  .DropDow {
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    padding: 0.5rem;
+
+    li {
+      padding: 0.2rem 0;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  #Header {
+    nav {
+      display: flex;
+      justify-content: center;
+      div:first-child {
+        cursor: pointer;
+      }
+
+      ul,
+      .login {
+        display: none;
+      }
+    }
+
+    .SlideContainer {
+      display: block;
+      width: 100%;
+      overflow: visible;
+      > div {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .SlideDropDowContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 80%;
+      margin: 1rem auto;
+    }
+
+    .login.LoginContainer {
+      display: flex;
+    }
+  }
+}

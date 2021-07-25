@@ -1,0 +1,19 @@
+.Title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  h1 {
+    text-align: center;
+    color: var(--Deep-Blue);
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  div {
+    background-color: var(--Purple-Dark);
+    height: 7px;
+    width: 72px;
+    border-radius: 2rem;
+  }
+}

@@ -1,0 +1,38 @@
+:root {
+  --Deep-Blue: #2400FF;
+  --Purple-Dark: #220E75;
+  --light-blue: #00C2FF;
+  --gray: #5C5C5C;
+  --White: #fff;
+  --Black: #ffffff00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+}
+
+
+ul {
+  list-style: none;
+}
+
+h1, p, a, input, button {
+  font-family: 'Poppins';
+}
+
+button, a {
+  cursor: po;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--White);
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  background-color: var(--Deep-Blue);
+}
