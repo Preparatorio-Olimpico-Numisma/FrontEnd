@@ -28,7 +28,7 @@ export function Card({
   className,
 }: CardProps) {
   return (
-    <div className={`card ${className ?? className}`}>
+    <div className={`card ${className ? className : ""}`}>
       <div className="cardContent">
         <div className="cardImage">
           <img src={imageCard} alt="imageCard" />
