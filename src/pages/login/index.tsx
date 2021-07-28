@@ -6,20 +6,17 @@ import Key from "../../assets/login/key.svg";
 import Facebook from "../../assets/login/facebook.svg";
 import Google from "../../assets/login/google.svg";
 
+import { Input } from "../../components/Input";
+
 import "./styles.scss";
 
 export function Login() {
   const history = useHistory();
-
-  function focusInput(num: number) {
-    const InsputAll = document.querySelectorAll("input");
-    InsputAll[num].focus();
-  }
-
+  
   return (
     <div id="Login">
       <main>
-        <button onClick={() => history.goBack()}>
+        <button onClick={() => history.replace("/")}>
           <img src={Back} alt="voltar" />
         </button>
 
@@ -33,26 +30,25 @@ export function Login() {
             e.preventDefault();
           }}
         >
-          <div className="InputContainer" onClick={() => focusInput(0)}>
-            <img src={Email} alt="email" />
-            <div>
-              <input required type="text" id="email" />
-              <label>Entre com email ou CPF</label>
-            </div>
-          </div>
+          <Input
+            altImg="email"
+            img={Email}
+            label="Entre com email ou CPF"
+            required
+            type="email"
+          />
 
-          <div className="InputContainer" onClick={() => focusInput(1)}>
-            <img src={Key} alt="senha" />
-
-            <div>
-              <input required type="password" id="password" />
-              <label>Digite aqui sua senha</label>
-            </div>
-          </div>
+          <Input
+            altImg="senha"
+            img={Key}
+            label="Digite aqui sua senha"
+            type = "password"
+            required
+          />
 
           <div id="buttons_container">
             <button type="submit">Entrar</button>
-            <button>Esqueci a senha</button>
+            <button onClick={()=>{history.push('/reset-password')}}>Esqueci a senha</button>
           </div>
         </form>
 
