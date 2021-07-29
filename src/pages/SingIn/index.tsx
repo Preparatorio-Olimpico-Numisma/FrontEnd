@@ -9,11 +9,13 @@ import Google from "../../assets/login/google.svg";
 import { Input } from "../../components/Input";
 
 import "./styles.scss";
+import { Aside } from "../../components/MessageForm";
 
-export function Login() {
+export function SingIn() {
   const history = useHistory();
-  
+
   return (
+      
     <div id="Login">
       <main>
         <button onClick={() => history.replace("/")}>
@@ -73,8 +75,7 @@ export function Login() {
           </h4>
         </div>
       </main>
-
-      <aside></aside>
+      <Aside></Aside>
     </div>
   );
 }

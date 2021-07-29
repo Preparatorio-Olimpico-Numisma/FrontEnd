@@ -1,0 +1,83 @@
+#ResetPassword {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: var(--Bg);
+  main {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    > div:first-child{
+      margin-top: 2rem;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+    > div:last-child{
+      grid-row-start: 2;
+      grid-row-end: 3;
+    }
+    h1 {
+      color: var(--Deep-Blue);
+    }
+    h4 {
+      color: var(--gray);
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .InputContainer {
+      border-radius: 8px;
+      border: none;
+    }
+  }
+}
+
+#ResetSucces {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--Deep-Blue);
+  div {
+    background: url("../../assets/images/Bolinhas-success.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--White);
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 2rem;
+      width: 355px;
+      color: var(--Purple-Dark);
+      &:hover{
+        background: var(--light-blue);
+        color: var(--Purple-Dark);
+        filter: brightness(0.8);
+      }
+    }
+  }
+  h1 {
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 3rem;
+  }
+  p{
+    font-size: 1.5rem;
+  }
+}

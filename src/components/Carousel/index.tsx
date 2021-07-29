@@ -17,7 +17,7 @@ export function Carousel() {
   function showOnebyOne() {
     return CardArray.map((card: CardProps, i) => {
       return (
-        <div key={i} className={`item ${!i ? "active" : ""}`}>
+        <div key={i} className="item">
           <a href={card.link}>
           <Card
             Author={card.Author}

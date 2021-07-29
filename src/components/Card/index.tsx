@@ -33,6 +33,7 @@ export function Card({
         <div className="cardImage">
           <img src={imageCard} alt="imageCard" />
         </div>
+        
         <div className="Star">
           <img src={Stars > 0 ? StarFill : StarFillNone} alt="Star" />
           <img src={Stars > 1 ? StarFill : StarFillNone} alt="Star" />
@@ -40,11 +41,13 @@ export function Card({
           <img src={Stars > 3 ? StarFill : StarFillNone} alt="Star" />
           <img src={Stars > 4 ? StarFill : StarFillNone} alt="Star" />
         </div>
+        
         <p>
           {Avaliation > 1
             ? `${Avaliation} avaliações`
             : `${Avaliation} avaliação`}{" "}
         </p>
+        
         <h1>
           <strong>{Curse}</strong>
           {Author}

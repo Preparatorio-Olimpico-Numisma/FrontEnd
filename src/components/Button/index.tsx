@@ -1,13 +1,14 @@
-import { ReactNode } from "react"
+import { ButtonHTMLAttributes } from "react";
 
-type ButtonProps = {
-  children: ReactNode
-}
+import "./styles.scss";
 
-export function Button({
-  children
-}:ButtonProps) {
+type propsButtons = ButtonHTMLAttributes<HTMLButtonElement> & {
+  isOutlined?: boolean;
+  isSuccess?: boolean;
+};
+
+export function Button({ isOutlined = false, isSuccess = false, ...props }: propsButtons) {
   return (
-    <button>{children}</button>
-  )
+    <button className={`button ${isOutlined ? "outlined" : ""} ${isSuccess ? "success" : ""}`} {...props} />
+  );
 }

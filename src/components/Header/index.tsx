@@ -60,7 +60,7 @@ export function Header() {
             </li>
           </ul>
           <div className="login">
-            <button onClick={() => history.push("/login")}>Login</button>
+            <button onClick={() => history.push("/singin")}>Login</button>
           </div>
         </nav>
       </header>
