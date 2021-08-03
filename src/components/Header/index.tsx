@@ -1,9 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import LogoImg from "../../assets/images/Logo.svg";
 import Dropimg from "../../assets/images/Drop.svg";
 
 import "./styles.scss";
 export function Header() {
+  const history = useHistory()
 
   function OpenNav() {
     if (window.innerWidth < 1000) {
@@ -57,7 +60,7 @@ export function Header() {
             </li>
           </ul>
           <div className="login">
-            <button>Login</button>
+            <button onClick={() => history.push("/singin")}>Login</button>
           </div>
         </nav>
       </header>

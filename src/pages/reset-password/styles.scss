@@ -1,0 +1,40 @@
+#ResetPassword {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: var(--Bg);
+  main {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    > div:first-child{
+      margin-top: 2rem;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+    > div:last-child{
+      grid-row-start: 2;
+      grid-row-end: 3;
+    }
+    h1 {
+      color: var(--Deep-Blue);
+    }
+    h4 {
+      color: var(--gray);
+    }
+  }
+  form {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .InputContainer {
+      border-radius: 8px;
+      border: none;
+    }
+  }
+}

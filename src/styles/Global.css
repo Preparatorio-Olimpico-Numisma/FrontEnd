@@ -5,6 +5,7 @@
   --gray: #5C5C5C;
   --White: #fff;
   --Black: #ffffff00;
+  --Bg: #EEE;
 }
 
 * {
@@ -24,7 +25,11 @@ h1, p, a, input, button {
 }
 
 button, a {
-  cursor: po;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
 }
 
 html::-webkit-scrollbar {
