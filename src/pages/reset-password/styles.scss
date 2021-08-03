@@ -28,6 +28,7 @@
     }
   }
   form {
+    padding-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -35,49 +36,5 @@
       border-radius: 8px;
       border: none;
     }
-  }
-}
-
-#ResetSucces {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--Deep-Blue);
-  div {
-    background: url("../../assets/images/Bolinhas-success.svg");
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 80%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--White);
-
-    img {
-      width: 100px;
-      height: 100px;
-    }
-
-    button {
-      margin-top: 2rem;
-      width: 355px;
-      color: var(--Purple-Dark);
-      &:hover{
-        background: var(--light-blue);
-        color: var(--Purple-Dark);
-        filter: brightness(0.8);
-      }
-    }
-  }
-  h1 {
-    font-family: "Poppins";
-    font-weight: bold;
-    font-size: 3rem;
-  }
-  p{
-    font-size: 1.5rem;
   }
 }

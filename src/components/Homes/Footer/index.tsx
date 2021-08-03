@@ -20,17 +20,17 @@ export function Footer() {
           <form className="form" onSubmit={(e) => subimitForm(e)}>
             <div>
               <label>Nome:</label>
-              <input type="text" required />
+              <input type="text" required autoComplete="name"/>
             </div>
 
             <div>
               <label>Seu melhor e-mail:</label>
-              <input type="email" required />
+              <input type="email" required autoComplete="email"/>
             </div>
 
             <div>
               <label>Escreva sua mensagem:</label>
-              <textarea maxLength={150}/>
+              <textarea maxLength={150} />
             </div>
             <button type="submit">Enviar</button>
           </form>
