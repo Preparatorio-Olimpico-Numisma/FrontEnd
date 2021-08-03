@@ -17,7 +17,6 @@ export function ResetPassword() {
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(e);
     toggle();
   }
 
@@ -27,7 +26,7 @@ export function ResetPassword() {
         <ScreenSuccess
           ButtonMessage="Voltar ao login"
           description="Boa, agora é só checar o e-mail que foi enviado para você redefinir a sua senha e aproveitar os estudos."
-          redirect="/"
+          redirect="/singin"
           title="Redefinição enviada!"
         />
       ) : (
