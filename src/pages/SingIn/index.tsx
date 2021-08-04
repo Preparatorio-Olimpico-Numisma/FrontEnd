@@ -8,34 +8,63 @@ import Google from "../../assets/login/google.svg";
 import { Input } from "../../components/Input";
 import { Aside } from "../../components/MessageForm";
 import { BackArrow } from "../../components/BackArrow";
+import { ErrorMessage } from "../../components/ErrorMessage";
+
+import { useForm, validatePassword, FieldsProps } from "../../hooks/useForm";
 
 import "./styles.scss";
 
 export function SingIn() {
   const history = useHistory();
 
+  const form = useForm({
+    initialValues: {
+      userEmail: "",
+      userPassword: "",
+    },
+
+    validate(values: FieldsProps) {
+      const errors = {
+        userEmail: "",
+        userPassword: "",
+      };
+
+      try {
+        const { userEmail, userPassword } = values;
+        if (userEmail.length > 0 && !userEmail.includes("@"))
+          errors.userEmail = "Por favor, insira um email valido.";
+        if (userPassword.length > 0) validatePassword(userPassword);
+      } catch (error) {
+        errors.userPassword = error.message;
+      }
+
+      return errors;
+    },
+  });
+
   return (
     <div id="Login">
       <main>
-        <BackArrow/>
-        
+        <BackArrow />
+
         <div className="title">
           <h1>Login</h1>
           <h3>Preencha os campos abaixo para entrar.</h3>
         </div>
+        <ErrorMessage>{form.errors.userEmail}</ErrorMessage>
+        <ErrorMessage>{form.errors.userPassword}</ErrorMessage>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
+        <form onSubmit={(event) => event.preventDefault()}>
           <Input
             altImg="email"
             img={Email}
             label="Entre com email ou CPF"
-            required
             type="email"
             autoComplete="email"
+            name="userEmail"
+            required
+            onChange={form.handleChange}
+            value={form.values.userEmail}
           />
 
           <Input
@@ -44,16 +73,15 @@ export function SingIn() {
             label="Digite aqui sua senha"
             type="password"
             autoComplete="current-password"
+            name="userPassword"
             required
+            onChange={form.handleChange}
+            value={form.values.userPassword}
           />
 
           <div id="buttons_container">
             <button type="submit">Entrar</button>
-            <button
-              onClick={() => {
-                history.push("/reset-password");
-              }}
-            >
+            <button onClick={() => history.push("/reset-password")}>
               Esqueci a senha
             </button>
           </div>
