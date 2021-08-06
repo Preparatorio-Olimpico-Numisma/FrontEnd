@@ -5,15 +5,15 @@ interface InputAttributes extends InputHTMLAttributes<HTMLInputElement> {
   altImg?: string;
   img?: string;
   label: string;
+  isFile?: boolean
 }
 
-//props: InputProps
-export function Input({ altImg, img, label, ...input }: InputAttributes) {
+export function Input({ altImg, img, label, isFile, ...input }: InputAttributes) {
   return (
     <div className="InputContainer">
       {img && altImg ?<img src={img} alt={altImg} /> : ""}
       <div>
-        <input {...input} />
+        <input className={isFile ? "File":""} {...input} />
         <label>{label}</label>
       </div>
     </div>

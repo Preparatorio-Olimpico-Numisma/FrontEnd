@@ -33,7 +33,14 @@
       pointer-events: none;
     }
 
-    &:focus ~ label, &:valid~ label {
+    &:not(.File):focus ~ label, &:not(.File):valid~ label {
+      transform: translateY(-24px);
+      font-size: 0.8em;
+      letter-spacing: 0.1em;
+      padding-top: 0.5rem;
+    }
+    
+    &.File ~ label{
       transform: translateY(-24px);
       font-size: 0.8em;
       letter-spacing: 0.1em;

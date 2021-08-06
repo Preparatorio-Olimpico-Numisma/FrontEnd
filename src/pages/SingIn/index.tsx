@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router";
 
 import Email from "../../assets/login/email.svg";
@@ -10,37 +11,23 @@ import { Aside } from "../../components/MessageForm";
 import { BackArrow } from "../../components/BackArrow";
 import { ErrorMessage } from "../../components/ErrorMessage";
 
-import { useForm, validatePassword, FieldsProps } from "../../hooks/useForm";
-
 import "./styles.scss";
+import { API } from "../../APi";
 
 export function SingIn() {
   const history = useHistory();
+  const [emailOrCPF, setEmailOrCPF] = useState("");
+  const [password, setPassword] = useState("");
+  const [messageError, setMessageError] = useState("");
 
-  const form = useForm({
-    initialValues: {
-      userEmail: "",
-      userPassword: "",
-    },
-
-    validate(values: FieldsProps) {
-      const errors = {
-        userEmail: "",
-        userPassword: "",
-      };
-
-      try {
-        const { userEmail, userPassword } = values;
-        if (userEmail.length > 0 && !userEmail.includes("@"))
-          errors.userEmail = "Por favor, insira um email valido.";
-        if (userPassword.length > 0) validatePassword(userPassword);
-      } catch (error) {
-        errors.userPassword = error.message;
-      }
-
-      return errors;
-    },
-  });
+  async function Login(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    try {
+      await API.SingIn({ email: emailOrCPF, password });
+    } catch(error) {
+      setMessageError(error.message)
+    }
+  }
 
   return (
     <div id="Login">
@@ -51,20 +38,17 @@ export function SingIn() {
           <h1>Login</h1>
           <h3>Preencha os campos abaixo para entrar.</h3>
         </div>
-        <ErrorMessage>{form.errors.userEmail}</ErrorMessage>
-        <ErrorMessage>{form.errors.userPassword}</ErrorMessage>
+        <ErrorMessage>{messageError}</ErrorMessage>
 
-        <form onSubmit={(event) => event.preventDefault()}>
+        <form onSubmit={(event) => Login(event)}>
           <Input
             altImg="email"
             img={Email}
             label="Entre com email ou CPF"
-            type="email"
             autoComplete="email"
-            name="userEmail"
             required
-            onChange={form.handleChange}
-            value={form.values.userEmail}
+            onChange={(e) => setEmailOrCPF(e.target.value)}
+            value={emailOrCPF}
           />
 
           <Input
@@ -75,8 +59,8 @@ export function SingIn() {
             autoComplete="current-password"
             name="userPassword"
             required
-            onChange={form.handleChange}
-            value={form.values.userPassword}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
 
           <div id="buttons_container">
