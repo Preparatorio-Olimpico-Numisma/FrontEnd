@@ -35,5 +35,11 @@ export const validate_cpf = (strCPF: string) => {
 
   if (Resto === 10 || Resto === 11) Resto = 0;
   if (Resto !== Number(strCPF.substring(10, 11))) return false;
+
+  var count = 1;
+  for (let i = 1; i < 11; i++) {
+    if (strCPF[i - 1] === strCPF[i]) count++;
+  }
+  if(count === 11) return false
   return true;
 };

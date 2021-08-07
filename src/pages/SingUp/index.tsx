@@ -35,6 +35,7 @@ export function SingUp() {
 
   async function handleSubmit(data: handleSubimitProps) {
     try {
+      if(!Number(data.cpf)) throw new Error("Insira apenas números")
       const schema = Yup.object().shape({
         first_name: Yup.string()
           .required("O nome é obrigatório")
@@ -50,9 +51,9 @@ export function SingUp() {
         ConfirmPassword: Yup.string()
           .required("Confirme sua senha")
           .trim("Apenas espaços não é permitido"),
-        cpf: Yup.string()
+        cpf: Yup.number()
           .required("O cpf é obrigatório")
-          .trim("Apenas espaços não é permitido"),
+          .integer("Insira números"),
       });
 
       await schema.validate(data, { abortEarly: false });
