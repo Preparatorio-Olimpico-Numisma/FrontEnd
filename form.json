@@ -1,0 +1,20 @@
+{
+  "Nome_Completo": "Bhryan Stepenhen da Cruz",
+  "email": "bhryanstepenhen@gmail.com",
+  "password": "12345678",
+  "cpf": "12345678901",
+  "telefone": [
+      "122345678",
+      "987654321",
+      "123456789"
+  ],
+  "Tepefone": "359999999999",
+  "Address": {
+      "CEP": "",
+      "Numero_Casa": "",
+      "Cidade": "",
+      "Bairro": "",
+      "Estado": "",
+      "Complemento": ""
+  }
+}

@@ -1,4 +1,4 @@
-import { Title } from "../../../components/TitlePages";
+import { Title } from "../../../components/Home/TitlePages";
 import { CardSquad } from "../../Card";
 
 import imageCard from '../../../assets/images/Wave.svg'

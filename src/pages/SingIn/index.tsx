@@ -1,29 +1,33 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 
+import { API } from "../../APi";
+import { Form } from "@unform/web";
+
 import Email from "../../assets/login/email.svg";
 import Key from "../../assets/login/key.svg";
 import Facebook from "../../assets/login/facebook.svg";
 import Google from "../../assets/login/google.svg";
 
-import { Input } from "../../components/Input";
-import { Aside } from "../../components/MessageForm";
+import { Input } from "../../components/Form/Input";
+import { Aside } from "../../components/Form/MessageForm";
 import { BackArrow } from "../../components/BackArrow";
-import { ErrorMessage } from "../../components/ErrorMessage";
+import { ErrorMessage } from "../../components/Form/ErrorMessage";
 
 import "./styles.scss";
-import { API } from "../../APi";
+
+type SingInProps = {
+  email: string;
+  password: string
+}
 
 export function SingIn() {
   const history = useHistory();
-  const [emailOrCPF, setEmailOrCPF] = useState("");
-  const [password, setPassword] = useState("");
   const [messageError, setMessageError] = useState("");
 
-  async function Login(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleSubmit(event: SingInProps) {
     try {
-      await API.SingIn({ email: emailOrCPF, password });
+      await API.SingIn(event);
     } catch(error) {
       setMessageError(error.message)
     }
@@ -40,15 +44,14 @@ export function SingIn() {
         </div>
         <ErrorMessage>{messageError}</ErrorMessage>
 
-        <form onSubmit={(event) => Login(event)}>
+        <Form onSubmit={(event) => handleSubmit(event)}>
           <Input
             altImg="email"
             img={Email}
+            name="email"
             label="Entre com email ou CPF"
             autoComplete="email"
             required
-            onChange={(e) => setEmailOrCPF(e.target.value)}
-            value={emailOrCPF}
           />
 
           <Input
@@ -57,10 +60,8 @@ export function SingIn() {
             label="Digite aqui sua senha"
             type="password"
             autoComplete="current-password"
-            name="userPassword"
+            name="password"
             required
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
           />
 
           <div id="buttons_container">
@@ -69,7 +70,7 @@ export function SingIn() {
               Esqueci a senha
             </button>
           </div>
-        </form>
+        </Form>
 
         <div>
           <h3>Ou prossiga com estas redes sociais</h3>

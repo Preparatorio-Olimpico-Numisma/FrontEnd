@@ -22,32 +22,18 @@
     }
 
     .InputContainer {
-      border-radius: 0;
-    }
-
-    .InputContainer:first-child {
-      border-radius: 1rem 1rem 0 0;
-    }
-
-    .InputContainer:last-child {
-      border-radius: 0 0 1rem 1rem;
+      &:first-child {
+        border-radius: 1rem 1rem 0 0;
+      }
+      &:nth-child(6) {
+        border-radius: 0 0 1rem 1rem;
+      }
     }
 
     form {
       margin-top: 2rem;
       > button {
         margin-top: 2rem;
-      }
-      > div:not(.active) {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
       }
     }
   }

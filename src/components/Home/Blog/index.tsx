@@ -1,4 +1,4 @@
-import { Title } from "../../TitlePages";
+import { Title } from "../../Home/TitlePages";
 import { Carousel } from "react-responsive-carousel";
 
 import { images } from "./images";
