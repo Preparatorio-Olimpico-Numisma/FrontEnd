@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-import { API } from "../../API";
+import { API } from "../../services/API";
 import { Form } from "@unform/web";
 
 import Email from "../../assets/login/email.svg";

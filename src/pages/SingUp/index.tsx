@@ -13,7 +13,7 @@ import { Input } from "../../components/Form/Input";
 import { Aside } from "../../components/Form/MessageForm";
 import { ScreenSuccess } from "../../components/screen-success/sucess";
 
-import { API, SingUpProps } from "../../API";
+import { API, SingUpProps } from "../../services/API";
 
 import "./styles.scss";
 
