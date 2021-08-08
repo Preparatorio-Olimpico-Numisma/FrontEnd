@@ -1,11 +1,6 @@
 import { useRef, useState } from "react";
 
-import {
-  // FieldsProps,
-  // useForm,
-  validatePassword,
-  validate_cpf,
-} from "../../hooks/useForm";
+import { validatePassword, validate_cpf } from "../../hooks/useForm";
 
 import * as Yup from "yup";
 import { Form } from "@unform/web";
@@ -18,7 +13,7 @@ import { Input } from "../../components/Form/Input";
 import { Aside } from "../../components/Form/MessageForm";
 import { ScreenSuccess } from "../../components/screen-success/sucess";
 
-import { API, SingUpProps } from "../../APi";
+import { API, SingUpProps } from "../../API";
 
 import "./styles.scss";
 
@@ -35,7 +30,7 @@ export function SingUp() {
 
   async function handleSubmit(data: handleSubimitProps) {
     try {
-      if(!Number(data.cpf)) throw new Error("Insira apenas números")
+      if (!Number(data.cpf)) throw new Error("Insira apenas números");
       const schema = Yup.object().shape({
         first_name: Yup.string()
           .required("O nome é obrigatório")
@@ -65,8 +60,8 @@ export function SingUp() {
         throw new Error("As senhas precisam ser iguais");
       if (!validate_cpf(String(data.cpf)))
         throw new Error("Insira um cpf válido");
-
-      await API.SingUp(data);
+      const {ConfirmPassword, ...rest} = data
+      await API.SingUp(rest);
       toggleModalSuccess();
     } catch (err) {
       if (err instanceof Yup.ValidationError) setMessages(err.errors[0]);

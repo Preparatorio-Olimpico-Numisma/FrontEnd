@@ -1,5 +1,3 @@
-/* eslint-disable no-eval */
-
 export function validatePassword(password: string) {
   if (!password.match(/[A-Z]/))
     return "Sua senha precisa ter pelo menos uma letra maiúscula.";
