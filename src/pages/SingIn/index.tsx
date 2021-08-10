@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
-import { API } from "../../services/API";
-import { Form } from "@unform/web";
+import { API } from '../../services/API';
+import { Form } from '@unform/web';
 
-import Email from "../../assets/login/email.svg";
-import Key from "../../assets/login/key.svg";
-import Facebook from "../../assets/login/facebook.svg";
-import Google from "../../assets/login/google.svg";
+import Email from '../../assets/login/email.svg';
+import Key from '../../assets/login/key.svg';
+import Facebook from '../../assets/login/facebook.svg';
+import Google from '../../assets/login/google.svg';
 
-import { Input } from "../../components/Form/Input";
-import { Aside } from "../../components/Form/MessageForm";
-import { BackArrow } from "../../components/BackArrow";
-import { ErrorMessage } from "../../components/Form/ErrorMessage";
+import { Input } from '../../components/Form/Input';
+import { Aside } from '../../components/Form/MessageForm';
+import { BackArrow } from '../../components/BackArrow';
+import { ErrorMessage } from '../../components/Form/ErrorMessage';
 
-import "./styles.scss";
+import './styles.scss';
 
 type SingInProps = {
   email: string;
@@ -23,7 +23,7 @@ type SingInProps = {
 
 export function SingIn() {
   const history = useHistory();
-  const [messageError, setMessageError] = useState("");
+  const [messageError, setMessageError] = useState('');
 
   async function handleSubmit(event: SingInProps) {
     try {
@@ -34,11 +34,11 @@ export function SingIn() {
   }
 
   return (
-    <div id="Login">
+    <div id='Login'>
       <main>
         <BackArrow />
 
-        <div className="title">
+        <div className='title'>
           <h1>Login</h1>
           <h3>Preencha os campos abaixo para entrar.</h3>
         </div>
@@ -46,27 +46,27 @@ export function SingIn() {
 
         <Form onSubmit={(event) => handleSubmit(event)}>
           <Input
-            altImg="email"
+            altImg='email'
             img={Email}
-            name="email"
-            label="Entre com email ou CPF"
-            autoComplete="email"
+            name='email'
+            label='Entre com email ou CPF'
+            autoComplete='email'
             required
           />
 
           <Input
-            altImg="senha"
+            altImg='senha'
             img={Key}
-            label="Digite aqui sua senha"
-            type="password"
-            autoComplete="current-password"
-            name="password"
+            label='Digite aqui sua senha'
+            type='password'
+            autoComplete='current-password'
+            name='password'
             required
           />
 
-          <div id="buttons_container">
-            <button type="submit">Entrar</button>
-            <button onClick={() => history.push("/reset-password")}>
+          <div id='buttons_container'>
+            <button type='submit'>Entrar</button>
+            <button onClick={() => history.push('/reset-password')}>
               Esqueci a senha
             </button>
           </div>
@@ -76,20 +76,20 @@ export function SingIn() {
           <h3>Ou prossiga com estas redes sociais</h3>
         </div>
 
-        <div className="accounts">
-          <a href="#a">
-            <img src={Google} alt="google" />
+        <div className='accounts'>
+          <a href='#a'>
+            <img src={Google} alt='google' />
           </a>
 
-          <a href="#a">
-            <img src={Facebook} alt="facebook" />
+          <a href='#a'>
+            <img src={Facebook} alt='facebook' />
           </a>
         </div>
 
-        <div className="SignUp">
+        <div className='SignUp'>
           <h4>
             Ainda não possui conta?
-            <button onClick={() => history.push("/singup")}>Cadastre-se</button>
+            <button onClick={() => history.push('/singup')}>Cadastre-se</button>
           </h4>
         </div>
       </main>

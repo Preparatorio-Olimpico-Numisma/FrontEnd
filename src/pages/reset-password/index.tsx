@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Input } from "../../components/Form/Input";
-import { Aside } from "../../components/Form/MessageForm";
-import { ScreenSuccess } from "../../components/screen-success/sucess";
-import { BackArrow } from "../../components/BackArrow";
-import { Button } from "../../components/Button";
+import { Input } from '../../components/Form/Input';
+import { Aside } from '../../components/Form/MessageForm';
+import { ScreenSuccess } from '../../components/screen-success/sucess';
+import { BackArrow } from '../../components/BackArrow';
+import { Button } from '../../components/Button';
 
-import Email from "../../assets/login/email.svg";
+import Email from '../../assets/login/email.svg';
 
-import "./styles.scss";
+import './styles.scss';
 
 export function ResetPassword() {
   const [modal, setModal] = useState(false);
@@ -24,13 +24,13 @@ export function ResetPassword() {
     <>
       {modal ? (
         <ScreenSuccess
-          ButtonMessage="Voltar ao login"
-          description="Boa, agora é só checar o e-mail que foi enviado para você redefinir a sua senha e aproveitar os estudos."
-          redirect="/singin"
-          title="Redefinição enviada!"
+          ButtonMessage='Voltar ao login'
+          description='Boa, agora é só checar o e-mail que foi enviado para você redefinir a sua senha e aproveitar os estudos.'
+          redirect='/singin'
+          title='Redefinição enviada!'
         />
       ) : (
-        <section id="ResetPassword">
+        <section id='ResetPassword'>
           <main>
             <div>
               <BackArrow />
@@ -41,14 +41,14 @@ export function ResetPassword() {
 
               <form onSubmit={(e) => submitForm(e)}>
                 <Input
-                  altImg="email"
+                  altImg='email'
                   img={Email}
-                  name="Email"
-                  label="E-mail"
-                  type="email"
+                  name='Email'
+                  label='E-mail'
+                  type='email'
                   required
                 />
-                <Button type="submit">Recuperar a senha</Button>
+                <Button type='submit'>Recuperar a senha</Button>
               </form>
             </div>
           </main>

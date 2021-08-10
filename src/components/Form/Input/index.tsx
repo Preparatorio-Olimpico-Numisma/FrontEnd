@@ -1,11 +1,11 @@
-import { useEffect, useRef, InputHTMLAttributes } from "react";
-import { useField } from "@unform/core";
+import { useEffect, useRef, InputHTMLAttributes } from 'react';
+import { useField } from '@unform/core';
 
-import "./styles.scss";
+import './styles.scss';
 
 interface InputAttributes extends InputHTMLAttributes<HTMLInputElement> {
   altImg?: string;
-  img?: string;
+  img?: string | undefined  ;
   label: string;
   isFile?: boolean;
   name: string;
@@ -17,15 +17,14 @@ export function Input({
   label,
   isFile,
   name,
+  type,
+  required,
   ...rest
 }: InputAttributes) {
   const inputRef = useRef<HTMLInputElement>(null)
   
   const { 
-    registerField, 
-    // clearError, 
-    // defaultValue, 
-    // error, 
+    registerField,
     fieldName 
   } = useField(name);
 
@@ -33,13 +32,13 @@ export function Input({
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: "value"
+      path: 'value'
     })
   }, [fieldName, registerField]);
 
   return (
-    <div className="InputContainer">
-      {img && altImg ? <img src={img} alt={altImg} /> : ""}
+    <div className='InputContainer'>
+      {img && altImg ? <img src={img} alt={altImg} /> : ''}
       <div>
         <input ref={inputRef} {...rest} />
         <label>{label}</label>

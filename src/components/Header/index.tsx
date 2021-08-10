@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import LogoImg from "../../assets/images/Logo.svg";
-import Dropimg from "../../assets/images/Drop.svg";
+import LogoImg from '../../assets/images/Logo.svg';
+import Dropimg from '../../assets/images/Drop.svg';
 
-import "./styles.scss";
+import './styles.scss';
 
 export function Header() {
   const history = useHistory()
@@ -13,53 +13,53 @@ export function Header() {
 
   function OpenNav() {
     if (window.innerWidth < 1000) {
-      navRef.current?.classList.toggle("SlideContainer");
-      ulRef.current?.classList.toggle("SlideDropDowContainer")
-      navRef.current?.lastElementChild?.classList.toggle("LoginContainer");
+      navRef.current?.classList.toggle('SlideContainer');
+      ulRef.current?.classList.toggle('SlideDropDowContainer')
+      navRef.current?.lastElementChild?.classList.toggle('LoginContainer');
     }
   }
   
   return (
     <React.Fragment>
-      <header id="Header">
+      <header id='Header'>
         <nav ref={navRef}>
           <div onClick={OpenNav}>
-            <img src={LogoImg} alt="logo" />
+            <img src={LogoImg} alt='logo' />
             <p>Numisma</p>
           </div>
           <ul ref={ulRef}>
             <li>
-              <a href="#Home">Home</a>
+              <a href='#Home'>Home</a>
             </li>
             <li>
-              <a href="#About">Sobre nós</a>
+              <a href='#About'>Sobre nós</a>
             </li>
             <li>
-              <a href="#Blog">Blog</a>
+              <a href='#Blog'>Blog</a>
             </li>
-            <div className="DropDowContainer">
+            <div className='DropDowContainer'>
               <li>
                 <p>Competições</p>
-                <img src={Dropimg} alt="Drop" />
+                <img src={Dropimg} alt='Drop' />
               </li>
-              <ul className="DropDow">
+              <ul className='DropDow'>
                 <li>
-                  <a href="#Calendar">Calendario</a>
+                  <a href='#Calendar'>Calendario</a>
                 </li>
                 <li>
-                  <a href="#Learning">Conheça</a>
+                  <a href='#Learning'>Conheça</a>
                 </li>
                 <li>
-                  <a href="#Learning">Aprenda</a>
+                  <a href='#Learning'>Aprenda</a>
                 </li>
               </ul>
             </div>
             <li>
-              <a href="#Contato">Contato</a>
+              <a href='#Contato'>Contato</a>
             </li>
           </ul>
-          <div className="login">
-            <button onClick={() => history.push("/singin")}>Login</button>
+          <div className='login'>
+            <button onClick={() => history.push('/singin')}>Login</button>
           </div>
         </nav>
       </header>

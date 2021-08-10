@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import "./styles.scss";
+import './styles.scss';
 
 type ErrorMessageProps = {
   children: ReactNode;
 };
 
 export function ErrorMessage({ children }: ErrorMessageProps) {
-  return <p className="error">{children}</p>;
+  return <p className='error'>{children}</p>;
 }

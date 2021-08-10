@@ -1,5 +1,5 @@
-import { Button } from "../../components/Button";
-import check from "../../assets/images/checked-success.svg";
+import { Button } from '../../components/Button';
+import check from '../../assets/images/checked-success.svg';
 
 import './styles.scss'
 
@@ -19,9 +19,9 @@ export function ScreenSuccess({
   // const history = useHistory()
 
   return (
-    <section id="ResetSucces">
+    <section id='ResetSucces'>
       <div>
-        <img src={check} alt="sucesso" />
+        <img src={check} alt='sucesso' />
         <h1>{title}</h1>
         <p>{description}</p>
         <a href={redirect}>

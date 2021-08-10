@@ -4,9 +4,9 @@ import './styles.scss'
 
 export function Start() {
   return (
-    <div id="Home">
+    <div id='Home'>
       <main>
-        <section className="SectionContent">
+        <section className='SectionContent'>
           <h1>
             Nós te preparamos para as principais
             <strong> olimpíadas científicas </strong>
@@ -17,7 +17,7 @@ export function Start() {
           <button>COMECE AQUI</button>
         </section>
         <section className='SectionImage'>
-          <img src={PcImg} alt="Computer" />
+          <img src={PcImg} alt='Computer' />
         </section>
       </main>
     </div>
