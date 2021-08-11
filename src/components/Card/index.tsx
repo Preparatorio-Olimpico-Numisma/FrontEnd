@@ -1,6 +1,6 @@
 import StarFill from '../../assets/images/StarFill.svg';
 import StarFillNone from '../../assets/images/StarFillNone.svg';
-import ArrowRight from '../../assets/images/arrow-right.svg';
+import ArrowRight from '../../assets/images/ArrowRight.svg';
 
 import './styles.scss';
 

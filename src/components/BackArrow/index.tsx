@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Back from '../../assets/login/back-arrow.svg';
+import Back from '../../assets/login/BackArrow.svg';
 
 export function BackArrow({
   ...rest

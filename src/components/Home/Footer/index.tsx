@@ -3,7 +3,7 @@ import { FormEvent } from 'react';
 import LogoImg from '../../../assets/images/Logo.svg';
 import Twitter from '../../../assets/images/Twitter.svg';
 import Instagram from '../../../assets/images/Instagram.svg';
-import Gmail from '../../../assets/images/G-mail.svg';
+import Gmail from '../../../assets/images/Gmail.svg';
 
 import './styles.scss';
 

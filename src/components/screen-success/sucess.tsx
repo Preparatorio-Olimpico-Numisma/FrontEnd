@@ -1,5 +1,5 @@
 import { Button } from '../Button';
-import check from '../../assets/images/checked-success.svg';
+import check from '../../assets/images/CheckedSuccess.svg';
 
 import './styles.scss';
 
