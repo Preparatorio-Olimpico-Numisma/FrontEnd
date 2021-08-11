@@ -15,7 +15,7 @@ export const CardArray = [
     Curse: 'Programação para OBI',
     Stars: Math.floor(Math.random() * 5),
     id: 90,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/diego3g.png',
@@ -24,7 +24,7 @@ export const CardArray = [
     Curse: 'Prgraming For Web',
     Stars: Math.floor(Math.random() * 5),
     id: 91,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/rocketseat.png',
@@ -33,7 +33,7 @@ export const CardArray = [
     Curse: 'Starter',
     Stars: Math.floor(Math.random() * 2),
     id: 92,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/maykbrito.png',
@@ -42,7 +42,7 @@ export const CardArray = [
     Curse: 'Root',
     Stars: Math.floor(Math.random() * 5),
     id: 93,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/akitaonrails.png',
@@ -51,7 +51,7 @@ export const CardArray = [
     Curse: 'History Computer',
     Stars: Math.floor(Math.random() * 2),
     id: 94,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/reactjs.png',
@@ -60,7 +60,7 @@ export const CardArray = [
     Curse: 'Reactjs',
     Stars: Math.floor(Math.random() * 5),
     id: 95,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/podemoscorp.png',
@@ -69,7 +69,7 @@ export const CardArray = [
     Curse: 'math base',
     Stars: Math.floor(Math.random() * 5),
     id: 96,
-    link: '#'
+    link: '#',
   },
   {
     imageCard: 'https://github.com/scarlateoficial.png',
@@ -78,6 +78,6 @@ export const CardArray = [
     Curse: 'low code',
     Stars: Math.floor(Math.random() * 2),
     id: 97,
-    link: '#'
+    link: '#',
   },
 ];

@@ -5,42 +5,30 @@ import './styles.scss';
 
 interface InputAttributes extends InputHTMLAttributes<HTMLInputElement> {
   altImg?: string;
-  img?: string | undefined  ;
+  img?: string | undefined;
   label: string;
-  isFile?: boolean;
   name: string;
 }
 
-export function Input({
-  altImg,
-  img,
-  label,
-  isFile,
-  name,
-  type,
-  required,
-  ...rest
-}: InputAttributes) {
-  const inputRef = useRef<HTMLInputElement>(null)
-  
-  const { 
-    registerField,
-    fieldName 
-  } = useField(name);
+export function Input({ altImg, img, label, name, ...rest }: InputAttributes) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const { registerField, fieldName } = useField(name);
 
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value'
-    })
+      path: 'value',
+    });
   }, [fieldName, registerField]);
 
   return (
-    <div className='InputContainer'>
+    <div className="InputContainer">
       {img && altImg ? <img src={img} alt={altImg} /> : ''}
       <div>
         <input ref={inputRef} {...rest} />
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label>{label}</label>
       </div>
     </div>

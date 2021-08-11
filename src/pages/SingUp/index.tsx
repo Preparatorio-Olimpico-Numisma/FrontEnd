@@ -1,10 +1,10 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState } from 'react';
-
-import { validatePassword, validate_cpf } from '../../hooks/useForm';
 
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { validatePassword, ValidadeCPF } from '../../hooks/useForm';
 
 import { BackArrow } from '../../components/BackArrow';
 import { Button } from '../../components/Button';
@@ -21,14 +21,14 @@ interface handleSubimitProps extends SingUpProps {
   ConfirmPassword: string;
 }
 
-export function SingUp() {
+export function SingUp(): JSX.Element {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [messages, setMessages] = useState('');
   const formRef = useRef<FormHandles>(null);
 
-  const toggleModalSuccess = () => setModalSuccess(!modalSuccess);
+  const toggleModalSuccess = (): void => setModalSuccess(!modalSuccess);
 
-  async function handleSubmit(data: handleSubimitProps) {
+  async function handleSubmit(data: handleSubimitProps): Promise<void> {
     try {
       if (!Number(data.cpf)) throw new Error('Insira apenas números');
       const schema = Yup.object().shape({
@@ -56,11 +56,15 @@ export function SingUp() {
       const message = validatePassword(data.password);
       if (message) throw new Error(message);
 
-      if (data.password !== data.ConfirmPassword)
+      if (data.password !== data.ConfirmPassword) {
         throw new Error('As senhas precisam ser iguais');
-      if (!validate_cpf(String(data.cpf)))
+      }
+      if (!ValidadeCPF(String(data.cpf))) {
         throw new Error('Insira um cpf válido');
-      const {ConfirmPassword, ...rest} = data
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { ConfirmPassword, ...rest } = data;
+
       await API.SingUp(rest);
       toggleModalSuccess();
     } catch (err) {
@@ -72,16 +76,16 @@ export function SingUp() {
   if (modalSuccess) {
     return (
       <ScreenSuccess
-        ButtonMessage='Fazer login'
-        description='Agora você faz parte da plataforma do Numisma. Tenha uma ótima experiência.'
-        redirect='/singin'
-        title='Cadastro concluído'
+        ButtonMessage="Fazer login"
+        description="Agora você faz parte da plataforma do Numisma. Tenha uma ótima experiência."
+        redirect="/singin"
+        title="Cadastro concluído"
       />
     );
   }
 
   return (
-    <section id='SingUp'>
+    <section id="SingUp">
       <main>
         <BackArrow />
         <div>
@@ -89,58 +93,58 @@ export function SingUp() {
           <h4>Preencha os dados abaixo para começar.</h4>
         </div>
         <ErrorMessage>{messages}</ErrorMessage>
-        <Form ref={formRef} onSubmit={async (e) => await handleSubmit(e)}>
+        <Form ref={formRef} onSubmit={(e) => handleSubmit(e)}>
           <Input
-            label='Nome'
-            type='text'
-            name='first_name'
-            autoComplete='given-name'
+            label="Nome"
+            type="text"
+            name="first_name"
+            autoComplete="given-name"
             required
           />
 
           <Input
-            label='Sobrenome'
-            type='text'
-            name='last_name'
-            autoComplete='family-name'
+            label="Sobrenome"
+            type="text"
+            name="last_name"
+            autoComplete="family-name"
             required
           />
 
           <Input
-            label='E-mail'
-            type='email'
-            name='email'
-            autoComplete='email'
+            label="E-mail"
+            type="email"
+            name="email"
+            autoComplete="email"
             required
           />
 
           <Input
-            label='Senha'
-            type='password'
-            name='password'
-            autoComplete='new-password'
+            label="Senha"
+            type="password"
+            name="password"
+            autoComplete="new-password"
             required
           />
 
           <Input
-            label='Confirme sua senha'
-            type='password'
-            name='ConfirmPassword'
-            autoComplete='new-password'
+            label="Confirme sua senha"
+            type="password"
+            name="ConfirmPassword"
+            autoComplete="new-password"
             required
           />
 
           <Input
-            label='Coloque seu cpf'
-            type='text'
-            name='cpf'
-            autoComplete='cpf'
+            label="Coloque seu cpf"
+            type="text"
+            name="cpf"
+            autoComplete="cpf"
             minLength={11}
             maxLength={11}
             required
           />
 
-          <Button type='submit'>Concluir cadastro</Button>
+          <Button type="submit">Concluir cadastro</Button>
         </Form>
       </main>
       <Aside />

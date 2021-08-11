@@ -7,5 +7,5 @@ type ErrorMessageProps = {
 };
 
 export function ErrorMessage({ children }: ErrorMessageProps) {
-  return <p className='error'>{children}</p>;
+  return <p className="error">{children}</p>;
 }

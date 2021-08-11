@@ -10,12 +10,12 @@ import Email from '../../assets/login/email.svg';
 
 import './styles.scss';
 
-export function ResetPassword() {
+export function ResetPassword(): JSX.Element {
   const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = (): void => setModal(!modal);
 
-  function submitForm(e: React.FormEvent<HTMLFormElement>) {
+  function submitForm(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     toggle();
   }
@@ -24,13 +24,13 @@ export function ResetPassword() {
     <>
       {modal ? (
         <ScreenSuccess
-          ButtonMessage='Voltar ao login'
-          description='Boa, agora é só checar o e-mail que foi enviado para você redefinir a sua senha e aproveitar os estudos.'
-          redirect='/singin'
-          title='Redefinição enviada!'
+          ButtonMessage="Voltar ao login"
+          description="Boa, agora é só checar o e-mail que foi enviado para você redefinir a sua senha e aproveitar os estudos."
+          redirect="/singin"
+          title="Redefinição enviada!"
         />
       ) : (
-        <section id='ResetPassword'>
+        <section id="ResetPassword">
           <main>
             <div>
               <BackArrow />
@@ -41,14 +41,14 @@ export function ResetPassword() {
 
               <form onSubmit={(e) => submitForm(e)}>
                 <Input
-                  altImg='email'
+                  altImg="email"
                   img={Email}
-                  name='Email'
-                  label='E-mail'
-                  type='email'
+                  name="Email"
+                  label="E-mail"
+                  type="email"
                   required
                 />
-                <Button type='submit'>Recuperar a senha</Button>
+                <Button type="submit">Recuperar a senha</Button>
               </form>
             </div>
           </main>

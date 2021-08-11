@@ -10,11 +10,11 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/singin' exact component={SingIn} />
-        <Route path='/singup' exact component={SingUp} />
-        <Route path='/reset-password' exact component={ResetPassword} />
-        <Route path='/success' exact component={ScreenSuccess} />
+        <Route path="/" exact component={Home} />
+        <Route path="/singin" exact component={SingIn} />
+        <Route path="/singup" exact component={SingUp} />
+        <Route path="/reset-password" exact component={ResetPassword} />
+        <Route path="/success" exact component={ScreenSuccess} />
       </Switch>
     </BrowserRouter>
   );

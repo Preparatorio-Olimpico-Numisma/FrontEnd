@@ -7,7 +7,9 @@ export type SingUpProps = {
   email: string;
   password: string;
   cpf: string;
+  // eslint-disable-next-line camelcase
   first_name: string;
+  // eslint-disable-next-line camelcase
   last_name: string;
 };
 
@@ -31,14 +33,14 @@ const BaseData: RequestProps = {
 };
 
 export const API = {
-  async SingIn(props: SingInProps) {
+  async SingIn(props: SingInProps): Promise<void> {
     BaseData.body = JSON.stringify(props);
     const response = await fetch(`${baseURL}/api/token`, BaseData);
     const data = await response.json();
     console.log(data);
     throw new Error('Api indisponível');
   },
-  async SingUp(props: SingUpProps) {
+  async SingUp(props: SingUpProps): Promise<void> {
     BaseData.body = JSON.stringify(props);
     const response = await fetch(`${baseURL}/api/register`, BaseData);
     const data = await response.json();
