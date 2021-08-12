@@ -1,5 +1,6 @@
-import './styles.scss';
 import { Carousel } from '../../Carousel';
+
+import './styles.scss';
 
 export function Curse() {
   return (

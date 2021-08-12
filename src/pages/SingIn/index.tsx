@@ -1,14 +1,13 @@
 import { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useHistory } from 'react-router';
 
 import { Form } from '@unform/web';
 import { API } from '../../services/API';
 
-import Email from '../../assets/login/email.svg';
-import Key from '../../assets/login/key.svg';
-import Facebook from '../../assets/login/facebook.svg';
-import Google from '../../assets/login/google.svg';
+import Email from '../../assets/login/Email.svg';
+import Key from '../../assets/login/Key.svg';
+import Facebook from '../../assets/login/Facebook.svg';
+import Google from '../../assets/login/Google.svg';
 
 import { Input } from '../../components/Form/Input';
 import { Aside } from '../../components/Form/MessageForm';

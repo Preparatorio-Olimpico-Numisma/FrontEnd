@@ -37,14 +37,16 @@ export const API = {
     BaseData.body = JSON.stringify(props);
     const response = await fetch(`${baseURL}/api/token`, BaseData);
     const data = await response.json();
-    console.log(data);
-    throw new Error('Api indisponível');
+    return data;
+    // console.log(data);
+    // throw new Error('Api indisponível');
   },
   async SingUp(props: SingUpProps): Promise<void> {
     BaseData.body = JSON.stringify(props);
     const response = await fetch(`${baseURL}/api/register`, BaseData);
     const data = await response.json();
-    console.log(data);
-    throw new Error('Api indisponível');
+    return data;
+    // console.log(data);
+    // throw new Error('Api indisponível');
   },
 };

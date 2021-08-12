@@ -27,7 +27,8 @@
       border-bottom: 3px solid var(--Deep-Blue);
     }
 
-    div:first-child {
+    > button:first-child {
+      background: none;
       display: flex;
       align-items: center;
 
@@ -104,8 +105,9 @@
     nav {
       display: flex;
       justify-content: center;
-      div:first-child {
+      > button:first-child {
         cursor: pointer;
+        margin: 0 auto;
       }
 
       ul,

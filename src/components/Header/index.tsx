@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import LogoImg from '../../assets/images/Logo.svg';
 import Dropimg from '../../assets/images/Drop.svg';
@@ -7,7 +8,8 @@ import Dropimg from '../../assets/images/Drop.svg';
 import './styles.scss';
 
 export function Header() {
-  const history = useHistory();
+  // const history = useHistory();
+  // console.log(history);
   const navRef = useRef<HTMLElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
 
@@ -20,49 +22,47 @@ export function Header() {
   }
 
   return (
-    <>
-      <header id="Header">
-        <nav ref={navRef}>
-          <button onClick={OpenNav}>
-            <img src={LogoImg} alt="logo" />
-            <p>Numisma</p>
-          </button>
-          <ul ref={ulRef}>
+    <header id="Header">
+      <nav ref={navRef}>
+        <button onClick={OpenNav}>
+          <img src={LogoImg} alt="logo" />
+          <p>Numisma</p>
+        </button>
+        <ul ref={ulRef}>
+          <li>
+            <a href="#Home">Home</a>
+          </li>
+          <li>
+            <a href="#About">Sobre nós</a>
+          </li>
+          <li>
+            <a href="#Blog">Blog</a>
+          </li>
+          <div className="DropDowContainer">
             <li>
-              <a href="#Home">Home</a>
+              <p>Competições</p>
+              <img src={Dropimg} alt="Drop" />
             </li>
-            <li>
-              <a href="#About">Sobre nós</a>
-            </li>
-            <li>
-              <a href="#Blog">Blog</a>
-            </li>
-            <div className="DropDowContainer">
+            <ul className="DropDow">
               <li>
-                <p>Competições</p>
-                <img src={Dropimg} alt="Drop" />
+                <a href="#Calendar">Calendario</a>
               </li>
-              <ul className="DropDow">
-                <li>
-                  <a href="#Calendar">Calendario</a>
-                </li>
-                <li>
-                  <a href="#Learning">Conheça</a>
-                </li>
-                <li>
-                  <a href="#Learning">Aprenda</a>
-                </li>
-              </ul>
-            </div>
-            <li>
-              <a href="#Contato">Contato</a>
-            </li>
-          </ul>
-          <div className="login">
-            <button onClick={() => history.push('/singin')}>Login</button>
+              <li>
+                <a href="#Learning">Conheça</a>
+              </li>
+              <li>
+                <a href="#Learning">Aprenda</a>
+              </li>
+            </ul>
           </div>
-        </nav>
-      </header>
-    </>
+          <li>
+            <a href="#Contato">Contato</a>
+          </li>
+        </ul>
+        <div className="login">
+          <Link to="/singin">Login</Link>
+        </div>
+      </nav>
+    </header>
   );
 }

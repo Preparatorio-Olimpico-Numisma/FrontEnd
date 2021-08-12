@@ -7,7 +7,7 @@ import { Squad } from '../../components/Home/Squad';
 import { Footer } from '../../components/Home/Footer';
 import { Start } from '../../components/Home/Start';
 
-export function Home(): JSX.Element {
+export function Home() {
   return (
     <>
       <Header />

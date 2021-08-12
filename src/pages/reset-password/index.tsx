@@ -6,7 +6,7 @@ import { ScreenSuccess } from '../../components/screen-success/sucess';
 import { BackArrow } from '../../components/BackArrow';
 import { Button } from '../../components/Button';
 
-import Email from '../../assets/login/email.svg';
+import Email from '../../assets/login/Email.svg';
 
 import './styles.scss';
 
