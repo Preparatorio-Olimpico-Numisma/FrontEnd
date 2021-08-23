@@ -50,7 +50,7 @@ export function Card({
 
         <h1>
           <strong>{Curse}</strong>
-          {Author}
+          <span>{Author}</span>
         </h1>
       </div>
     </div>

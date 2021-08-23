@@ -1,6 +1,5 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import LogoImg from '../../assets/images/Logo.svg';
 import Dropimg from '../../assets/images/Drop.svg';
@@ -8,8 +7,8 @@ import Dropimg from '../../assets/images/Drop.svg';
 import './styles.scss';
 
 export function Header() {
-  // const history = useHistory();
-  // console.log(history);
+  const history = useHistory();
+
   const navRef = useRef<HTMLElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
 
@@ -60,7 +59,13 @@ export function Header() {
           </li>
         </ul>
         <div className="login">
-          <Link to="/singin">Login</Link>
+          <button
+            onClick={() => {
+              history.push('/singin');
+            }}
+          >
+            Login
+          </button>
         </div>
       </nav>
     </header>

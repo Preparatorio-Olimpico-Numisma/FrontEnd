@@ -1,4 +1,4 @@
-export function validatePassword(password: string): string {
+export function validatePassword(password: string) {
   if (!password.match(/[A-Z]/)) {
     return 'Sua senha precisa ter pelo menos uma letra maiúscula.';
   }
@@ -15,7 +15,7 @@ export function validatePassword(password: string): string {
   return '';
 }
 
-export const ValidadeCPF = (strCPF: string): boolean => {
+export const ValidadeCPF = (strCPF: string) => {
   let Soma;
   let Resto;
   let i;

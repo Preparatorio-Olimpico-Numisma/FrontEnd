@@ -10,12 +10,12 @@ import Email from '../../assets/login/Email.svg';
 
 import './styles.scss';
 
-export function ResetPassword(): JSX.Element {
+export function ResetPassword() {
   const [modal, setModal] = useState(false);
 
-  const toggle = (): void => setModal(!modal);
+  const toggle = () => setModal(!modal);
 
-  function submitForm(e: React.FormEvent<HTMLFormElement>): void {
+  function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     toggle();
   }

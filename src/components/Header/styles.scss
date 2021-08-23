@@ -8,7 +8,7 @@
   p {
     color: var(--gray);
     text-decoration: none;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     cursor: pointer;
   }
@@ -44,15 +44,15 @@
     }
 
     button {
-
       width: 9.8rem;
       height: 3.3rem;
       border-radius: 2rem;
 
-      background: linear-gradient(var(--Purple-Dark), #ffffff00), var(--Deep-Blue);
+      background: linear-gradient(var(--Purple-Dark), #ffffff00),
+        var(--Deep-Blue);
       color: #fff;
 
-      font-family: "Poppins";
+      font-family: 'Poppins';
       font-weight: bold;
       font-size: 1rem;
 
@@ -97,6 +97,9 @@
     li {
       padding: 0.2rem 0;
     }
+  }
+  .login button a{
+    color: var(--white);
   }
 }
 

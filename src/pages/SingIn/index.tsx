@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 
 import { Form } from '@unform/web';
 import { API } from '../../services/API';
+import { SingInProps } from '../../services/API/@types';
 
 import Email from '../../assets/login/Email.svg';
 import Key from '../../assets/login/Key.svg';
@@ -16,18 +17,14 @@ import { ErrorMessage } from '../../components/Form/ErrorMessage';
 
 import './styles.scss';
 
-type SingInProps = {
-  email: string;
-  password: string;
-};
-
-export function SingIn(): JSX.Element {
+export function SingIn() {
   const history = useHistory();
   const [messageError, setMessageError] = useState('');
 
-  async function handleSubmit(event: SingInProps): Promise<void> {
+  async function handleSubmit(event: SingInProps) {
     try {
       await API.SingIn(event);
+      setMessageError('Logado');
       return;
     } catch (error) {
       setMessageError(error.message);
@@ -69,7 +66,7 @@ export function SingIn(): JSX.Element {
             <button type="submit">Entrar</button>
             <button
               type="button"
-              onClick={(): void => history.push('/reset-password')}
+              onClick={() => history.push('/reset-password')}
             >
               Esqueci a senha
             </button>

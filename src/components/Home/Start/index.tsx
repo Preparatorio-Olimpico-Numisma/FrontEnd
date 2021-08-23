@@ -1,8 +1,10 @@
+import { useHistory } from 'react-router';
 import PcImg from '../../../assets/images/Computer.svg';
 
 import './styles.scss';
 
 export function Start() {
+  const history = useHistory();
   return (
     <div id="Home">
       <main>
@@ -17,7 +19,7 @@ export function Start() {
             Numisma é um preparatório olímpico com foco em olimpíadas nacionais
             de matemática, informática e astronomia.
           </p>
-          <button>COMECE AQUI</button>
+          <button onClick={() => history.push('/singup')}>COMECE AQUI</button>
         </section>
         <section className="SectionImage">
           <img src={PcImg} alt="Computer" />

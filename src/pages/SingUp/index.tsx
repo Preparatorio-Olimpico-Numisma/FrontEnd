@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useRef, useState } from 'react';
 
 import * as Yup from 'yup';
@@ -13,7 +12,8 @@ import { Input } from '../../components/Form/Input';
 import { Aside } from '../../components/Form/MessageForm';
 import { ScreenSuccess } from '../../components/screen-success/sucess';
 
-import { API, SingUpProps } from '../../services/API';
+import { API } from '../../services/API';
+import { SingUpProps } from '../../services/API/@types';
 
 import './styles.scss';
 
@@ -21,14 +21,14 @@ interface handleSubimitProps extends SingUpProps {
   ConfirmPassword: string;
 }
 
-export function SingUp(): JSX.Element {
+export function SingUp() {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [messages, setMessages] = useState('');
   const formRef = useRef<FormHandles>(null);
 
-  const toggleModalSuccess = (): void => setModalSuccess(!modalSuccess);
+  const toggleModalSuccess = () => setModalSuccess(!modalSuccess);
 
-  async function handleSubmit(data: handleSubimitProps): Promise<void> {
+  async function handleSubmit(data: handleSubimitProps) {
     try {
       if (!Number(data.cpf)) throw new Error('Insira apenas números');
       const schema = Yup.object().shape({
@@ -65,7 +65,8 @@ export function SingUp(): JSX.Element {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { ConfirmPassword, ...rest } = data;
 
-      await API.SingUp(rest);
+      const response = await API.SingUp(rest);
+      setMessages(response);
       toggleModalSuccess();
     } catch (err) {
       if (err instanceof Yup.ValidationError) setMessages(err.errors[0]);
