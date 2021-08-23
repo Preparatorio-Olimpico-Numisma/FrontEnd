@@ -1,7 +1,7 @@
-import { CardArray } from "./CardArray";
-import { Card } from "../Card";
+import { CardArray } from './CardArray';
+import { Card } from '../Card';
 
-import "./styles.scss";
+import './styles.scss';
 
 type CardProps = {
   imageCard: string;
@@ -15,26 +15,26 @@ type CardProps = {
 
 export function Carousel() {
   function showOnebyOne() {
-    return CardArray.map((card: CardProps, i) => {
+    return CardArray.map((card: CardProps) => {
       return (
-        <div key={i} className="item">
+        <div key={card.id} className="item">
           <a href={card.link}>
-          <Card
-            Author={card.Author}
-            Avaliation={card.Avaliation}
-            Curse={card.Curse}
-            Stars={card.Stars}
-            imageCard={card.imageCard}
-            key={card.id}
-          />
+            <Card
+              Author={card.Author}
+              Avaliation={card.Avaliation}
+              Curse={card.Curse}
+              Stars={card.Stars}
+              imageCard={card.imageCard}
+              key={card.id}
+            />
           </a>
         </div>
       );
     });
   }
   function move(x: number) {
-    const item = document.getElementById("items");
-    item?.scrollBy(x, 0)
+    const item = document.getElementById('items');
+    item?.scrollBy(x, 0);
   }
 
   return (
@@ -50,10 +50,10 @@ export function Carousel() {
         </button>
       </div>
       <div id="items-warapper">
-        <div id="items" >{showOnebyOne()}</div>
+        <div id="items">{showOnebyOne()}</div>
       </div>
       <div className="Next Control">
-        <button onClick={() =>  move(300)}>
+        <button onClick={() => move(300)}>
           <svg viewBox="0 0 30 49" fill="none">
             <path
               d="M28.3605 27.1023L9.0416 47.9208C7.70631 49.3597 5.54714 49.3597 4.22606 47.9208L1.01571 44.4613C-0.319572 43.0223 -0.319572 40.6956 1.01571 39.2719L14.6952 24.5L1.0015 9.74336C-0.333776 8.30444 -0.333776 5.97767 1.0015 4.55405L4.21186 1.07919C5.54714 -0.35973 7.70631 -0.35973 9.02739 1.07919L28.3463 21.8977C29.6958 23.3366 29.6958 25.6634 28.3605 27.1023Z"

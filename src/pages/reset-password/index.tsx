@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Input } from "../../components/Input";
-import { Aside } from "../../components/MessageForm";
-import { ScreenSuccess } from "../../components/screen-success/sucess";
-import { BackArrow } from "../../components/BackArrow";
-import { Button } from "../../components/Button";
+import { Input } from '../../components/Form/Input';
+import { Aside } from '../../components/Form/MessageForm';
+import { ScreenSuccess } from '../../components/screen-success/sucess';
+import { BackArrow } from '../../components/BackArrow';
+import { Button } from '../../components/Button';
 
-import Email from "../../assets/login/email.svg";
+import Email from '../../assets/login/Email.svg';
 
-import "./styles.scss";
+import './styles.scss';
 
 export function ResetPassword() {
   const [modal, setModal] = useState(false);
@@ -43,6 +43,7 @@ export function ResetPassword() {
                 <Input
                   altImg="email"
                   img={Email}
+                  name="Email"
                   label="E-mail"
                   type="email"
                   required

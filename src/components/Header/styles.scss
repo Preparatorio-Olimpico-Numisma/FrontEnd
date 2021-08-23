@@ -8,7 +8,7 @@
   p {
     color: var(--gray);
     text-decoration: none;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     cursor: pointer;
   }
@@ -27,7 +27,8 @@
       border-bottom: 3px solid var(--Deep-Blue);
     }
 
-    div:first-child {
+    > button:first-child {
+      background: none;
       display: flex;
       align-items: center;
 
@@ -43,15 +44,15 @@
     }
 
     button {
-
       width: 9.8rem;
       height: 3.3rem;
       border-radius: 2rem;
 
-      background: linear-gradient(var(--Purple-Dark), #ffffff00), var(--Deep-Blue);
+      background: linear-gradient(var(--Purple-Dark), #ffffff00),
+        var(--Deep-Blue);
       color: #fff;
 
-      font-family: "Poppins";
+      font-family: 'Poppins';
       font-weight: bold;
       font-size: 1rem;
 
@@ -97,6 +98,9 @@
       padding: 0.2rem 0;
     }
   }
+  .login button a{
+    color: var(--white);
+  }
 }
 
 @media (max-width: 1000px) {
@@ -104,8 +108,9 @@
     nav {
       display: flex;
       justify-content: center;
-      div:first-child {
+      > button:first-child {
         cursor: pointer;
+        margin: 0 auto;
       }
 
       ul,

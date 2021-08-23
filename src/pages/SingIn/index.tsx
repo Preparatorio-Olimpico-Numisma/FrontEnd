@@ -1,31 +1,33 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
-import Email from "../../assets/login/email.svg";
-import Key from "../../assets/login/key.svg";
-import Facebook from "../../assets/login/facebook.svg";
-import Google from "../../assets/login/google.svg";
+import { Form } from '@unform/web';
+import { API } from '../../services/API';
+import { SingInProps } from '../../services/API/@types';
 
-import { Input } from "../../components/Input";
-import { Aside } from "../../components/MessageForm";
-import { BackArrow } from "../../components/BackArrow";
-import { ErrorMessage } from "../../components/ErrorMessage";
+import Email from '../../assets/login/Email.svg';
+import Key from '../../assets/login/Key.svg';
+import Facebook from '../../assets/login/Facebook.svg';
+import Google from '../../assets/login/Google.svg';
 
-import "./styles.scss";
-import { API } from "../../APi";
+import { Input } from '../../components/Form/Input';
+import { Aside } from '../../components/Form/MessageForm';
+import { BackArrow } from '../../components/BackArrow';
+import { ErrorMessage } from '../../components/Form/ErrorMessage';
+
+import './styles.scss';
 
 export function SingIn() {
   const history = useHistory();
-  const [emailOrCPF, setEmailOrCPF] = useState("");
-  const [password, setPassword] = useState("");
-  const [messageError, setMessageError] = useState("");
+  const [messageError, setMessageError] = useState('');
 
-  async function Login(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleSubmit(event: SingInProps) {
     try {
-      await API.SingIn({ email: emailOrCPF, password });
-    } catch(error) {
-      setMessageError(error.message)
+      await API.SingIn(event);
+      setMessageError('Logado');
+      return;
+    } catch (error) {
+      setMessageError(error.message);
     }
   }
 
@@ -40,15 +42,14 @@ export function SingIn() {
         </div>
         <ErrorMessage>{messageError}</ErrorMessage>
 
-        <form onSubmit={(event) => Login(event)}>
+        <Form onSubmit={(event) => handleSubmit(event)}>
           <Input
             altImg="email"
             img={Email}
+            name="email"
             label="Entre com email ou CPF"
             autoComplete="email"
             required
-            onChange={(e) => setEmailOrCPF(e.target.value)}
-            value={emailOrCPF}
           />
 
           <Input
@@ -57,19 +58,20 @@ export function SingIn() {
             label="Digite aqui sua senha"
             type="password"
             autoComplete="current-password"
-            name="userPassword"
+            name="password"
             required
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
           />
 
           <div id="buttons_container">
             <button type="submit">Entrar</button>
-            <button onClick={() => history.push("/reset-password")}>
+            <button
+              type="button"
+              onClick={() => history.push('/reset-password')}
+            >
               Esqueci a senha
             </button>
           </div>
-        </form>
+        </Form>
 
         <div>
           <h3>Ou prossiga com estas redes sociais</h3>
@@ -88,11 +90,13 @@ export function SingIn() {
         <div className="SignUp">
           <h4>
             Ainda não possui conta?
-            <button onClick={() => history.push("/singup")}>Cadastre-se</button>
+            <button type="button" onClick={() => history.push('/singup')}>
+              Cadastre-se
+            </button>
           </h4>
         </div>
       </main>
-      <Aside></Aside>
+      <Aside />
     </div>
   );
 }

@@ -1,258 +1,154 @@
-import React, { useState } from "react";
+import { useRef, useState } from 'react';
 
-import {
-  FieldsProps,
-  useForm,
-  validatePassword,
-  validate_cpf,
-} from "../../hooks/useForm";
+import * as Yup from 'yup';
+import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core';
+import { validatePassword, ValidadeCPF } from '../../hooks/useForm';
 
-import { BackArrow } from "../../components/BackArrow";
-import { Button } from "../../components/Button";
-import { ErrorMessage } from "../../components/ErrorMessage";
-import { Input } from "../../components/Input";
-import { Aside } from "../../components/MessageForm";
-import { ScreenSuccess } from "../../components/screen-success/sucess";
+import { BackArrow } from '../../components/BackArrow';
+import { Button } from '../../components/Button';
+import { ErrorMessage } from '../../components/Form/ErrorMessage';
+import { Input } from '../../components/Form/Input';
+import { Aside } from '../../components/Form/MessageForm';
+import { ScreenSuccess } from '../../components/screen-success/sucess';
 
-import Back from "../../assets/login/back-arrow.svg";
+import { API } from '../../services/API';
+import { SingUpProps } from '../../services/API/@types';
 
-import { API } from "../../APi";
+import './styles.scss';
 
-import "./styles.scss";
+interface handleSubimitProps extends SingUpProps {
+  ConfirmPassword: string;
+}
 
 export function SingUp() {
   const [modalSuccess, setModalSuccess] = useState(false);
-  const [modalForm, setModalForm] = useState(false);
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState('');
+  const formRef = useRef<FormHandles>(null);
 
   const toggleModalSuccess = () => setModalSuccess(!modalSuccess);
-  const toggleModalForm = () => setModalForm(!modalForm);
 
-  const form = useForm({
-    initialValues: {
-      userEmail: "",
-      userPassword: "",
-      Cpf: "",
-      Telephone: "",
-      Address: "",
-      Description: "",
-      UF: "",
-      City: "",
-      Name: "",
-      Family_name: "",
-    },
-
-    validate(values: FieldsProps) {
-      const errors = {
-        userEmail: "",
-        userPassword: "",
-      };
-      if (values.userEmail.length > 0 && !values.userEmail.includes("@"))
-        errors.userEmail = "Por favor, insira um email valido.";
-      if (values.userPassword && values.userPassword.length > 0)
-        errors.userPassword = validatePassword(values.userPassword);
-
-      const arr = [
-        values.userEmail,
-        values.userPassword,
-        values.Cpf,
-        values.Telephone,
-        values.Address,
-        values.Description,
-        values.UF,
-        values.City,
-        values.Name,
-        values.Family_name,
-      ];
-
-      setMessage("");
-      arr.forEach((e) => {
-        const str = String(e);
-        if (str.length > 0 && str.trim().length < 1) {
-          setMessage("Apenas espaços não é permitido");
-        }
+  async function handleSubmit(data: handleSubimitProps) {
+    try {
+      if (!Number(data.cpf)) throw new Error('Insira apenas números');
+      const schema = Yup.object().shape({
+        first_name: Yup.string()
+          .required('O nome é obrigatório')
+          .trim('Apenas espaços não é permitido'),
+        last_name: Yup.string()
+          .required('O sobrenome é obrigatório')
+          .trim('Apenas espaços não é permitido'),
+        email: Yup.string()
+          .required('O email é obrigatório')
+          .email('digite um email válidio')
+          .trim('Apenas espaços não é permitido'),
+        password: Yup.string().required('O password é obrigatório'),
+        ConfirmPassword: Yup.string()
+          .required('Confirme sua senha')
+          .trim('Apenas espaços não é permitido'),
+        cpf: Yup.number()
+          .required('O cpf é obrigatório')
+          .integer('Insira números'),
       });
 
-      if (values.Cpf) {
-        if (!Number(values.Cpf)) setMessage("É permitido apenas números");
-        const CPF = values.Cpf.trim();
-        const arr = CPF.match(/[0-9]/g);
-        values.Cpf = "";
-        arr?.forEach((e) => (values.Cpf += e));
-        var count = 1;
-        for (let i = 1; i < 11; i++) {
-          if (values.Cpf[i - 1] === values.Cpf[i]) count++;
-        }
-        if (!validate_cpf(values.Cpf) || count === 11)
-          setMessage("Insira um CPF válido");
+      await schema.validate(data, { abortEarly: false });
+
+      const message = validatePassword(data.password);
+      if (message) throw new Error(message);
+
+      if (data.password !== data.ConfirmPassword) {
+        throw new Error('As senhas precisam ser iguais');
       }
+      if (!ValidadeCPF(String(data.cpf))) {
+        throw new Error('Insira um cpf válido');
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { ConfirmPassword, ...rest } = data;
 
-      return errors;
-    },
-  });
-
-  async function formSubimit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!!form.errors.userEmail) return;
-    if (!!form.errors.userPassword) return;
-    if (message !== "") return;
-    try {
-      await API.SingUp(form.values);
+      const response = await API.SingUp(rest);
+      setMessages(response);
       toggleModalSuccess();
-    } catch (error) {
-      setMessage(error.message);
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) setMessages(err.errors[0]);
+      else setMessages(err.message);
     }
   }
 
+  if (modalSuccess) {
+    return (
+      <ScreenSuccess
+        ButtonMessage="Fazer login"
+        description="Agora você faz parte da plataforma do Numisma. Tenha uma ótima experiência."
+        redirect="/singin"
+        title="Cadastro concluído"
+      />
+    );
+  }
+
   return (
-    <>
-      {modalSuccess ? (
-        <ScreenSuccess
-          ButtonMessage="Fazer login"
-          description="Agora você faz parte da plataforma do Numisma. Tenha uma ótima experiência."
-          redirect="/singin"
-          title="Cadastro concluído"
-        />
-      ) : (
-        <section id="SingUp">
-          <main>
-            {modalForm ? (
-              <button onClick={toggleModalForm} className="backButton">
-                <img src={Back} alt="voltar" />
-              </button>
-            ) : (
-              <BackArrow />
-            )}
+    <section id="SingUp">
+      <main>
+        <BackArrow />
+        <div>
+          <h1>Cadastro</h1>
+          <h4>Preencha os dados abaixo para começar.</h4>
+        </div>
+        <ErrorMessage>{messages}</ErrorMessage>
+        <Form ref={formRef} onSubmit={(e) => handleSubmit(e)}>
+          <Input
+            label="Nome"
+            type="text"
+            name="first_name"
+            autoComplete="given-name"
+            required
+          />
 
-            <div>
-              <h1>Cadastro</h1>
-              <h4>Preencha os dados abaixo para começar.</h4>
-            </div>
-            <ErrorMessage>{form.errors.userEmail}</ErrorMessage>
-            <ErrorMessage>{form.errors.userPassword}</ErrorMessage>
-            <ErrorMessage>{message}</ErrorMessage>
-            <form onSubmit={(e) => formSubimit(e)}>
-              <div className={!modalForm ? "active" : ""}>
-                <Input
-                  label="UF"
-                  type="text"
-                  name="UF"
-                  autoComplete="address-level1"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.UF}
-                />
+          <Input
+            label="Sobrenome"
+            type="text"
+            name="last_name"
+            autoComplete="family-name"
+            required
+          />
 
-                <Input
-                  label="Cidade"
-                  type="text"
-                  name="City"
-                  autoComplete="address-level2"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.City}
-                />
+          <Input
+            label="E-mail"
+            type="email"
+            name="email"
+            autoComplete="email"
+            required
+          />
 
-                <Input
-                  label="Nome"
-                  type="text"
-                  name="Name"
-                  autoComplete="given-name"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.Name}
-                />
+          <Input
+            label="Senha"
+            type="password"
+            name="password"
+            autoComplete="new-password"
+            required
+          />
 
-                <Input
-                  label="Sobrenome"
-                  type="text"
-                  name="Family_name"
-                  autoComplete="family-name"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.Family_name}
-                />
+          <Input
+            label="Confirme sua senha"
+            type="password"
+            name="ConfirmPassword"
+            autoComplete="new-password"
+            required
+          />
 
-                <Input
-                  label="E-mail"
-                  type="email"
-                  name="userEmail"
-                  autoComplete="email"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.userEmail}
-                />
+          <Input
+            label="Coloque seu cpf"
+            type="text"
+            name="cpf"
+            autoComplete="cpf"
+            minLength={11}
+            maxLength={11}
+            required
+          />
 
-                <Input
-                  label="Senha"
-                  type="password"
-                  name="userPassword"
-                  autoComplete="new-password"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.userPassword}
-                />
-              </div>
-
-              <div className={modalForm ? "active" : ""}>
-                <Input
-                  label="CPF"
-                  type="text"
-                  name="Cpf"
-                  autoComplete="CPF"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.Cpf}
-                  maxLength={11}
-                />
-                <Input
-                  label="Telephone"
-                  type="text"
-                  name="Telephone"
-                  autoComplete="tel"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.Telephone}
-                />
-                <Input
-                  label="address"
-                  type="text"
-                  name="Address"
-                  autoComplete="address"
-                  required
-                />
-                <Input
-                  label="description"
-                  type="text"
-                  name="Description"
-                  autoComplete="description"
-                  required
-                  onChange={form.handleChange}
-                  value={form.values.Description}
-                />
-                <Input
-                  label="avatar"
-                  type="file"
-                  name="Avatar"
-                  isFile
-                  accept="image/*"
-                  multiple={false}
-                  required
-                />
-              </div>
-
-              {modalForm ? (
-                <Button type="submit">Concluir cadastro</Button>
-              ) : (
-                <Button type="button" onClick={toggleModalForm}>
-                  Próxima etapa
-                </Button>
-              )}
-            </form>
-          </main>
-          <Aside />
-        </section>
-      )}
-    </>
+          <Button type="submit">Concluir cadastro</Button>
+        </Form>
+      </main>
+      <Aside />
+    </section>
   );
 }

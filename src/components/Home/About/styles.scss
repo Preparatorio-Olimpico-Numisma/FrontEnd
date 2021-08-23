@@ -1,0 +1,122 @@
+#About {
+  position: relative;
+
+  .About {
+    position: relative;
+    top: -2rem;
+
+    svg {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+
+      path {
+        width: 100%;
+      }
+    }
+  }
+
+  .AboutTitle {
+    position: relative;
+    bottom: 1rem;
+    margin-left: 10%;
+    max-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      color: var(--Deep-Blue);
+      font-weight: bold;
+    }
+
+    div {
+      width: 63px;
+      border-radius: 2rem;
+      height: 7px;
+      background: var(--Purple-Dark);
+    }
+  }
+
+  main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    > section:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2.5rem;
+      margin-left: 4%;
+
+      h1 {
+        color: var(--Deep-Blue);
+        font-weight: 500;
+        font-size: 2rem;
+      }
+    }
+
+    section:last-child {
+      display: flex;
+      justify-content: flex-end;
+      img {
+        width: 80%;
+      }
+    }
+  }
+
+  .Mission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid var(--gray);
+    border-radius: 2rem;
+    width: 100%;
+    height: 100%;
+    max-height: 576px;
+    max-width: 401px;
+
+    p {
+      text-align: center;
+      font-size: 1.3rem;
+      padding: 1rem 2rem;
+    }
+  }
+
+  .Offer {
+    li {
+      display: flex;
+      gap: 1rem;
+      padding: 0.3rem 0;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .About {
+      top: -3rem;
+    }
+    .AboutTitle {
+      bottom: -2rem;
+      margin: 0 auto;
+    }
+
+    main {
+      display: block;
+      margin: 0;
+      section:first-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+      .Mission {
+        margin-top: 2rem;
+      }
+      section:last-child {
+        display: none;
+      }
+    }
+  }
+}

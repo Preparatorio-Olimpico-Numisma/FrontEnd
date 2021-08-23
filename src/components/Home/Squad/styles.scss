@@ -1,0 +1,60 @@
+#Squad {
+  background: linear-gradient(var(--Purple-Dark), var(--Deep-Blue));
+  .SquadTopImage {
+    position: relative;
+    width: 100%;
+    svg {
+      width: 100%;
+    }
+  }
+
+  .CardSquad {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 165px 0;
+    .CardItem {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      > div {
+        max-width: 300px;
+        max-height: 300px;
+      }
+    }
+    .card {
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 1450px) {
+    .CardSquad {
+      .CardItem {
+        > div {
+          width: 260px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1250px) {
+    .CardSquad .CardItem > div {
+      width: 200px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .CardSquad .CardItem {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      > div {
+        width: 300px;
+        height: 250px;
+      }
+    }
+  }
+}

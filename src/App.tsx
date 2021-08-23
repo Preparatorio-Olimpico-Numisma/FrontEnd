@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Home } from "./pages/Home";
-import { SingIn } from "./pages/SingIn";
-import { SingUp } from "./pages/SingUp";
-import { ResetPassword } from "./pages/reset-password";
-import { ScreenSuccess } from "./components/screen-success/sucess";
+import { Home } from './pages/Home';
+import { SingIn } from './pages/SingIn';
+import { SingUp } from './pages/SingUp';
+import { ResetPassword } from './pages/reset-password';
+import { ScreenSuccess } from './components/screen-success/sucess';
 
 function App() {
   return (

@@ -1,0 +1,81 @@
+#Home {
+  main {
+    background: linear-gradient(var(--Deep-Blue), var(--Purple-Dark));
+    display: flex;
+    padding: 2.5rem 5rem;
+  }
+
+  .SectionContent {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    gap: 1rem;
+
+    h1 {
+      color: var(--White);
+      font-size: 2rem;
+      font-family: "Poppins", sans-serif;
+      font-weight: normal;
+    }
+
+    p {
+      color: var(--White);
+      font-weight: normal;
+    }
+
+    button {
+      width: 9.8rem;
+      height: 3.3rem;
+      border-radius: 2rem;
+      margin-bottom: 2.2rem;
+
+      background: var(--White);
+      color: var(--Deep-Blue);
+
+      font-family: "Poppins";
+      font-weight: bold;
+      font-size: 1rem;
+
+      transition: filter 0.2s;
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
+  }
+  .SectionImage {
+    width: 100%;
+    img {
+      mix-blend-mode: saturation;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    main {
+      padding: 6% 2% 8% 6%;
+    }
+
+    .SectionContent {
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      padding-bottom: 1rem;
+      gap: 1rem;
+  
+      h1 {
+        color: var(--White);
+        font-size: 1.2rem;
+        font-family: "Poppins", sans-serif;
+        font-weight: normal;
+      }
+
+      button {
+        margin: 2rem auto;
+      }
+    }
+    .SectionImage {
+      display: none;
+    }
+
+  }
+}
