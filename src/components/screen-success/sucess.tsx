@@ -1,20 +1,20 @@
-import { Button } from "../../components/Button";
-import check from "../../assets/images/checked-success.svg";
+import { Button } from '../Button';
+import check from '../../assets/images/CheckedSuccess.svg';
 
-import './styles.scss'
+import './styles.scss';
 
 type SuccessProps = {
   title: string;
   description: string;
   redirect: string;
   ButtonMessage: string;
-}
+};
 
 export function ScreenSuccess({
   ButtonMessage,
   description,
   redirect,
-  title
+  title,
 }: SuccessProps) {
   // const history = useHistory()
 

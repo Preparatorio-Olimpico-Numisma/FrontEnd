@@ -22,13 +22,23 @@
   padding: 20px 40px;
   color: var(--White);
   h1 {
+    min-height: 50px;
     font-size: 18px;
     font-weight: normal;
     display: flex;
     flex-direction: column;
-    word-break: break-all;
     strong {
-      word-break: break-all;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    span {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
     }
   }
 
@@ -37,7 +47,13 @@
     align-items: center; 
     justify-content: space-between;
     width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       font-size: 1.2rem;
     }
   }
