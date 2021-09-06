@@ -1,6 +1,8 @@
+import Image from '../../assets/images/User.svg';
+
 export const CardArray = [
   {
-    imageCard: 'https://github.com/jn513.png',
+    imageCard: Image,
     Author: 'Julio Nunes Avelar',
     Avaliation: 1,
     Curse: 'Matemática para OMU',
@@ -9,7 +11,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/BhryanS2.png',
+    imageCard: Image,
     Author: 'Bhryan Stepenhen da Cruz',
     Avaliation: 2,
     Curse: 'Programação para OBI',
@@ -18,7 +20,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/diego3g.png',
+    imageCard: Image,
     Author: 'Diego',
     Avaliation: 3,
     Curse: 'Prgraming For Web',
@@ -27,7 +29,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/rocketseat.png',
+    imageCard: Image,
     Author: 'Rocket',
     Avaliation: 4,
     Curse: 'Starter',
@@ -36,7 +38,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/maykbrito.png',
+    imageCard: Image,
     Author: 'Mayk',
     Avaliation: 5,
     Curse: 'Root',
@@ -45,7 +47,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/akitaonrails.png',
+    imageCard: Image,
     Author: 'Akita',
     Avaliation: 6,
     Curse: 'History Computer',
@@ -54,7 +56,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/reactjs.png',
+    imageCard: Image,
     Author: 'React',
     Avaliation: 6,
     Curse: 'Reactjs',
@@ -63,7 +65,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/podemoscorp.png',
+    imageCard: Image,
     Author: 'Podemos',
     Avaliation: 7,
     Curse: 'math base',
@@ -72,7 +74,7 @@ export const CardArray = [
     link: '#',
   },
   {
-    imageCard: 'https://github.com/scarlateoficial.png',
+    imageCard: Image,
     Author: 'Code coffe',
     Avaliation: 8,
     Curse: 'low code',

@@ -2,7 +2,6 @@ import { ResponseSignIn, SignInProps } from './@types';
 import { BaseApi } from './ConfigApi';
 
 export async function SignIn(props: SignInProps) {
-  console.log(process.env.REACT_APP_TOKEN);
   const response = await BaseApi.post('/api/token/', props);
 
   if (response.status < 200 || response.status >= 300)
