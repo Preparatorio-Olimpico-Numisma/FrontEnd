@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { validatePassword, ValidadeCPF } from '../../hooks/useForm';
+import { useAuthContext } from '../../hooks/useAuth';
 
 import { BackArrow } from '../../components/BackArrow';
 import { Button } from '../../components/Button';
@@ -12,19 +13,19 @@ import { Input } from '../../components/Form/Input';
 import { Aside } from '../../components/Form/MessageForm';
 import { ScreenSuccess } from '../../components/screen-success/sucess';
 
-import { API } from '../../services/API';
-import { SingUpProps } from '../../services/API/@types';
+import { SignUpProps } from '../../services/API/@types';
 
 import './styles.scss';
 
-interface handleSubimitProps extends SingUpProps {
+interface handleSubimitProps extends SignUpProps {
   ConfirmPassword: string;
 }
 
-export function SingUp() {
+export function SignUp() {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [messages, setMessages] = useState('');
   const formRef = useRef<FormHandles>(null);
+  const context = useAuthContext();
 
   const toggleModalSuccess = () => setModalSuccess(!modalSuccess);
 
@@ -65,12 +66,11 @@ export function SingUp() {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { ConfirmPassword, ...rest } = data;
 
-      const response = await API.SingUp(rest);
-      setMessages(response);
+      await context.SignUp(rest);
       toggleModalSuccess();
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) setMessages(err.errors[0]);
-      else setMessages(err.message);
+    } catch (error: any) {
+      if (error instanceof Yup.ValidationError) setMessages(error.errors[0]);
+      else setMessages(error.message);
     }
   }
 
@@ -86,7 +86,7 @@ export function SingUp() {
   }
 
   return (
-    <section id="SingUp">
+    <section id="SignUp">
       <main>
         <BackArrow />
         <div>

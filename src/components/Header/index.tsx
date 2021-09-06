@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import LogoImg from '../../assets/images/Logo.svg';
@@ -8,23 +8,25 @@ import './styles.scss';
 
 export function Header() {
   const history = useHistory();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navRef = useRef<HTMLElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
+  const Toggle = () => setIsOpen(!isOpen);
 
-  function OpenNav() {
+  useEffect(() => {
     if (window.innerWidth < 1000) {
       navRef.current?.classList.toggle('SlideContainer');
       ulRef.current?.classList.toggle('SlideDropDowContainer');
       navRef.current?.lastElementChild?.classList.toggle('LoginContainer');
     }
-  }
+  }, [isOpen]);
 
   return (
     <header id="Header">
       <nav ref={navRef}>
-        <button onClick={OpenNav}>
-          <img src={LogoImg} alt="logo" />
+        <button onClick={Toggle}>
+          <img src={LogoImg} alt="logo" className="Logo" />
           <p>Numisma</p>
         </button>
         <ul ref={ulRef}>

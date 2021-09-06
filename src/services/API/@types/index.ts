@@ -1,14 +1,14 @@
-export type SingInProps = {
+export type SignInProps = {
   email: string;
   password: string;
 };
 
-export type ResponseSingIn = {
+export type ResponseSignIn = {
   refresh: string;
   access: string;
 };
 
-export type SingUpProps = {
+export type SignUpProps = {
   email: string;
   password: string;
   cpf: string;
@@ -16,7 +16,7 @@ export type SingUpProps = {
   last_name: string;
 };
 
-export type ResponseSingUp = {
+export type ResponseSignUp = {
   message: string;
   sucess: boolean;
   error?: string;
@@ -37,6 +37,19 @@ export interface RequestProps extends RequestInit {
 }
 
 export type OptionsProps = {
-  props: ResponseSingIn | SingInProps;
+  props: ResponseSignIn | SignInProps | any;
   method: string;
+  Token?: string | undefined;
 };
+
+export interface UserProps {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  cpf: string;
+  created_at: string;
+  updated_at: string;
+  refresh: string;
+  access: string;
+}
