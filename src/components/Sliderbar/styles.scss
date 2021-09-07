@@ -1,0 +1,139 @@
+.SlidebarContainer {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sliderbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 240px;
+  background: #11101d;
+  padding: 6px 14px;
+  transition: all 0.5s ease;
+}
+
+.logo_content {
+  .logo {
+    color: var(--White);
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    .Icon {
+      font-size: 28px;
+      margin-right: 5px;
+      color: var(--White);
+    }
+    .logo_name {
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+  button {
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    margin-top: 10px;
+    height: 28px;
+    width: 28px;
+    text-align: center;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateX(-50%);
+  }
+  .btn {
+    color: var(--White);
+    height: 28px;
+    width: 28px;
+  }
+}
+
+.nav_list {
+  margin-top: 20px;
+  li {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    border-radius: 12px;
+    margin-top: 20px;
+  }
+}
+
+.profile_content {
+  position: absolute;
+  color: var(--White);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  .profile {
+    position: relative;
+    padding: 10px 6px;
+    height: 70px;
+    background-color: #1d1b31;
+  }
+  .profile_datails {
+    display: flex;
+    align-items: center;
+    img {
+      height: 45px;
+      width: 45px;
+      object-fit: cover;
+      border-radius: 50%;
+      color: var(--White);
+    }
+    .name_job {
+      margin-left: 10px;
+    }
+    .name {
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .job {
+      font-size: 12px;
+    }
+  }
+  .SingOut {
+    position: absolute;
+    left: 88%;
+    bottom: 30%;
+    transform: translate(-50%);
+    min-width: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    border-radius: 12px;
+    color: var(--White);
+  }
+}
+
+.sliderbar.active {
+  width: 78px;
+  .logo_content {
+    opacity: 1;
+    button {
+      left: 55%;
+    }
+  }
+  .nav_list {
+    opacity: 1;
+  }
+}
+
+.ChildrenContent {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 240px);
+  left: 240px;
+}
+
