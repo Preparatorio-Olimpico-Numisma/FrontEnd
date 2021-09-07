@@ -25,7 +25,11 @@ export function Input({ altImg, img, label, name, ...rest }: InputAttributes) {
 
   return (
     <div className="InputContainer">
-      {img && altImg ? <img src={img} alt={altImg} /> : ''}
+      {img && altImg ? (
+        <img src={img} alt={altImg} className="ImageInput" />
+      ) : (
+        ''
+      )}
       <div>
         <input ref={inputRef} {...rest} />
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

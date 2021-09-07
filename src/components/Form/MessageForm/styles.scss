@@ -1,4 +1,4 @@
-#Aside {
+.Aside {
   background: var(--Deep-Blue);
   color: var(--White);
   display: flex;
@@ -22,7 +22,7 @@
 }
 
 @media (max-width: 1000px) {
-  #Aside {
+  .Aside {
     display: none;
   }
 }

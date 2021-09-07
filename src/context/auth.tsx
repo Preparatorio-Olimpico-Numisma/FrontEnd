@@ -16,32 +16,24 @@ type AuthContextData = {
   SignUp(data: SignUpProps): Promise<void>;
 };
 
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+const AuthContext = createContext({} as AuthContextData);
 
-export function AuthProvider({ children }: AuthProviderProps) {
+export function AuthContextProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps | null>(null);
   const [isLoad, setIsLoad] = useState(true);
 
-  function ParseJSON(value: string) {
-    return JSON.parse(value);
-  }
-
   useEffect(() => {
     (async () => {
-      const UserString = localStorage.getItem('Numisma@User');
-      const AccessToken = localStorage.getItem('Numisma@AccessToken');
-      const RefreshToken = localStorage.getItem('Numisma@RefreshToken');
+      const UserString = localStorage.getItem('@Numisma.User');
+      const AccessToken = localStorage.getItem('@Numisma.AccessToken');
+      const RefreshToken = localStorage.getItem('@Numisma.RefreshToken');
 
       if (UserString && AccessToken && RefreshToken) {
-        const UserData = ParseJSON(UserString);
+        const userJson = JSON.parse(UserString);
         const access = await ApiMethods.checkToken(RefreshToken);
-        const userJson = JSON.parse(UserData);
-
         setUser(userJson);
-
-        localStorage.setItem('@IoT.AccessToken', access);
+        localStorage.setItem('@Numisma.AccessToken', access);
         BaseApi.defaults.headers.Authorization = `Bearer ${AccessToken}`;
-        BaseApi.defaults.headers['X-Refresh-Token'] = RefreshToken;
       }
       setIsLoad(false);
     })();
@@ -49,20 +41,32 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function SignIn(email: string, password: string) {
     const json = await ApiMethods.SignIn({ email, password });
+
     if (!json.access) throw new Error('Email ou senha incorretos');
     const { access, refresh } = json;
     BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
 
-    const data = await ApiMethods.GetData(email, password);
+    const data: UserProps = {
+      access: json.access,
+      cpf: '000.000.000-00',
+      created_at: '2020-08-20T18:00:00.000Z',
+      email: 'a@A',
+      first_name: 'a',
+      id: 1,
+      last_name: 'a',
+      refresh: json.refresh,
+      updated_at: '2020-08-20T18:00:00.000Z',
+    };
+
+    // await ApiMethods.GetData(email, password);
+
     if (!data) throw new Error('Email ou senha incorretos');
 
-    const userData = data;
+    localStorage.setItem('@Numisma.User', JSON.stringify(data));
+    localStorage.setItem('@Numisma.AccessToken', access);
+    localStorage.setItem('@Numisma.RefreshToken', refresh);
 
-    localStorage.setItem('@IoT.User', JSON.stringify(userData));
-    localStorage.setItem('@IoT.AccessToken', access);
-    localStorage.setItem('@IoT.RefreshToken', refresh);
-
-    setUser(userData);
+    setUser(data);
   }
 
   async function SignUp(data: SignUpProps): Promise<void> {
@@ -75,7 +79,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     localStorage.clear();
     setUser(null);
   }
-
   return (
     <AuthContext.Provider
       value={{

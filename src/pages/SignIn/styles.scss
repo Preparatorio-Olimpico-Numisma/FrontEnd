@@ -74,6 +74,8 @@
       img {
         cursor: pointer;
         transition: 0.2s;
+        width: 97px;
+        height: 97px;
         &:hover {
           transform: translateY(-5px);
         }

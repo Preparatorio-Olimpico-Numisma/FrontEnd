@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 
 import Back from '../../assets/login/BackArrow.svg';
 
+import './styles.scss';
+
 export function BackArrow({
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement>) {

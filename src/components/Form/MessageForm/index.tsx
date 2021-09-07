@@ -4,7 +4,7 @@ import './styles.scss';
 
 export function Aside() {
   return (
-    <aside id="Aside">
+    <aside className="Aside">
       <img src={Logo} alt="Logo" />
       <div>
         <h1>Numisma seu preparatório olímpico</h1>

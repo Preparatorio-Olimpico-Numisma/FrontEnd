@@ -1,7 +1,7 @@
 import { Title } from '../TitlePages';
 import { CardSquad } from '../../Card';
 
-import imageCard from '../../../assets/images/Wave.svg';
+import imageCard from '../../../assets/images/User.svg';
 
 import './styles.scss';
 

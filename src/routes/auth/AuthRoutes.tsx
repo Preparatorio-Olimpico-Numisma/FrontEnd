@@ -5,7 +5,7 @@ import { Dashboard } from '../../pages/Pages-Auth/Dashboard';
 export function AuthRoutes() {
   return (
     <Switch>
-      <Route path="/Dashboard" exact component={Dashboard} />
+      <Route path="/" exact component={Dashboard} />
     </Switch>
   );
 }

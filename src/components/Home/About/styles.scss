@@ -56,11 +56,16 @@
       }
     }
 
-    section:last-child {
+    .Person {
       display: flex;
       justify-content: flex-end;
+      .Person {
+        display: none;
+      }
       img {
         width: 80%;
+        width: 400px;
+        height: 400px;
       }
     }
   }
@@ -91,6 +96,10 @@
       padding: 0.3rem 0;
       font-size: 1.2rem;
     }
+    img {
+      width: 27px;
+      height: 27px;
+    }
   }
 
   @media (max-width: 1000px) {
@@ -110,11 +119,11 @@
         flex-direction: column;
         align-items: center;
         margin: 0;
-      }
+      };
       .Mission {
         margin-top: 2rem;
-      }
-      section:last-child {
+      };
+      .Person {
         display: none;
       }
     }

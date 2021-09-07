@@ -21,7 +21,7 @@ export function Start() {
           </p>
           <button onClick={() => history.push('/singup')}>COMECE AQUI</button>
         </section>
-        {window.innerWidth < 1000 ? (
+        {window.innerWidth > 1000 ? (
           <section className="SectionImage">
             <img src={PcImg} alt="Computer" />
           </section>

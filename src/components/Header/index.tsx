@@ -16,9 +16,17 @@ export function Header() {
 
   useEffect(() => {
     if (window.innerWidth < 1000) {
-      navRef.current?.classList.toggle('SlideContainer');
-      ulRef.current?.classList.toggle('SlideDropDowContainer');
-      navRef.current?.lastElementChild?.classList.toggle('LoginContainer');
+      const ClassListNav = navRef.current?.classList;
+      const ClassListUl = ulRef.current?.classList;
+      if (!isOpen) {
+        ClassListNav?.remove('SlideContainer');
+        ClassListUl?.remove('SlideDropDowContainer');
+        ClassListNav?.remove('LoginContainer');
+      } else {
+        ClassListNav?.add('SlideContainer');
+        ClassListUl?.add('SlideDropDowContainer');
+        ClassListNav?.add('LoginContainer');
+      }
     }
   }, [isOpen]);
 

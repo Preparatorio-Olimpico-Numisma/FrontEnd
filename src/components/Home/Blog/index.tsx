@@ -26,7 +26,7 @@ export function Blog() {
         <Title>Fique por dentro do mundo olímpico!</Title>
         <section className="BlogContent">
           <div className="ContainerCarousel">
-            <Carousel>
+            <Carousel autoPlay={false}>
               {images.map((e: ImagesProps, index) => {
                 return (
                   // eslint-disable-next-line react/no-array-index-key

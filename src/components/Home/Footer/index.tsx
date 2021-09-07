@@ -11,6 +11,7 @@ export function Footer() {
   function subimitForm(e: FormEvent) {
     e.preventDefault();
   }
+  const Yaer = new Date().getFullYear();
   return (
     <div id="Footer">
       <main>
@@ -78,7 +79,7 @@ export function Footer() {
       </main>
       <aside>
         <div className="line" />
-        <p>&copy; 2021 Copyright Numisma</p>
+        <p>&copy; {Yaer} Copyright Numisma</p>
       </aside>
     </div>
   );

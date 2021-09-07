@@ -52,4 +52,7 @@ export interface UserProps {
   updated_at: string;
   refresh: string;
   access: string;
+  data?: {
+    image: string;
+  } | undefined;
 }
