@@ -1,9 +1,11 @@
 import { Sidebar } from '../../../components/Sidebar';
 
-export function Dashboard() {
+export function User() {
   return (
     <Sidebar>
-      <div>Ola</div>
+      <div>
+        <h1>User</h1>
+      </div>
     </Sidebar>
   );
 }

@@ -1,4 +1,6 @@
 import { createContext, ReactNode, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { SignUpProps, UserProps } from '../services/API/@types';
 import { ApiMethods } from '../services/API';
 import { BaseApi } from '../services/API/ConfigApi';
@@ -21,6 +23,7 @@ const AuthContext = createContext({} as AuthContextData);
 export function AuthContextProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps | null>(null);
   const [isLoad, setIsLoad] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -37,7 +40,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       }
       setIsLoad(false);
     })();
-  }, []);
+  }, [history]);
 
   async function SignIn(email: string, password: string) {
     const json = await ApiMethods.SignIn({ email, password });
@@ -50,10 +53,10 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       access: json.access,
       cpf: '000.000.000-00',
       created_at: '2020-08-20T18:00:00.000Z',
-      email: 'a@A',
-      first_name: 'a',
+      email: 'bhryanstepenhen@A',
+      first_name: 'Bhryan',
       id: 1,
-      last_name: 'a',
+      last_name: 'Stepenhen',
       refresh: json.refresh,
       updated_at: '2020-08-20T18:00:00.000Z',
     };
@@ -67,6 +70,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     localStorage.setItem('@Numisma.RefreshToken', refresh);
 
     setUser(data);
+    history.replace('/');
   }
 
   async function SignUp(data: SignUpProps): Promise<void> {
@@ -75,7 +79,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     await SignIn(data.email, data.password);
   }
 
-  async function SignOut() {
+  function SignOut() {
     localStorage.clear();
     setUser(null);
   }

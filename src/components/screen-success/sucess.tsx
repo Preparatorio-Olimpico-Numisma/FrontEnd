@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Button } from '../Button';
 import check from '../../assets/images/CheckedSuccess.svg';
 
@@ -24,9 +26,9 @@ export function ScreenSuccess({
         <img src={check} alt="sucesso" />
         <h1>{title}</h1>
         <p>{description}</p>
-        <a href={redirect}>
+        <Link to={redirect}>
           <Button isSuccess>{ButtonMessage}</Button>
-        </a>
+        </Link>
       </div>
     </section>
   );

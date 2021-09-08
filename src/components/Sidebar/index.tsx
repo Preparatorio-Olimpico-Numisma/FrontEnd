@@ -13,24 +13,20 @@ import { useAuthContext } from '../../hooks/useAuth';
 
 import { Tooltip } from '../Tooltip';
 
-// import Logo from '../../assets/images/Logo.svg';
+import Logo from '../../assets/images/LogoSideBar.svg';
 import UserImg from '../../assets/images/User.svg';
 
 import './styles.scss';
 
-// get our fontawesome imports
-
-type SliderbarProps = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+type SidebarProps = {
   children: React.ReactNode;
 };
 
-export function Sliderbar({ children, isOpen, setIsOpen }: SliderbarProps) {
+export function Sidebar({ children }: SidebarProps) {
   const { user, SignOut } = useAuthContext();
   const [userImage, setUserImage] = useState('');
   const refButton = useRef<HTMLButtonElement>(null);
-  const refSliderbar = useRef<HTMLDivElement>(null);
+  const refSidebar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const image = user?.data?.image;
@@ -46,16 +42,15 @@ export function Sliderbar({ children, isOpen, setIsOpen }: SliderbarProps) {
   }
 
   function HandleCloseSlidebar() {
-    refSliderbar.current?.classList.toggle('active');
-    setIsOpen(false);
+    refSidebar.current?.classList.toggle('active');
   }
 
   return (
     <div className="SlidebarContainer">
-      <div className="sliderbar" ref={refSliderbar}>
+      <div className="sidebar" ref={refSidebar}>
         <div className="logo_content">
           <div className="logo">
-            <FontAwesomeIcon icon={faCog} size="2x" className="Icon" />
+            <img src={Logo} alt="logo" className="Icon" />
             <div className="logo_name">Numisma</div>
           </div>
           <button onClick={HandleCloseSlidebar} ref={refButton}>
@@ -65,16 +60,16 @@ export function Sliderbar({ children, isOpen, setIsOpen }: SliderbarProps) {
 
         <ul className="nav_list">
           <li>
-            <Tooltip Link="#a" Name="Dashboard" icon={faTh} />
+            <Tooltip href="/" Name="Dashboard" icon={faTh} />
           </li>
           <li>
-            <Tooltip Link="#a" Name="User" icon={faUser} />
+            <Tooltip href="/user" Name="User" icon={faUser} />
           </li>
           <li>
-            <Tooltip Link="#a" Name="Services" icon={faCog} />
+            <Tooltip href="/services" Name="Services" icon={faCog} />
           </li>
           <li>
-            <Tooltip Link="#a" Name="Contact" icon={faIdCard} />
+            <Tooltip href="/contact" Name="Contact" icon={faIdCard} />
           </li>
         </ul>
 
