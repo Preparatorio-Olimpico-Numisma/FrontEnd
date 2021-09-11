@@ -3,7 +3,7 @@ import {
   faBars,
   faTh,
   faUser,
-  faIdCard,
+  faCalendarAlt,
   faCog,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,14 +27,12 @@ export function Sidebar({ children }: SidebarProps) {
   const [userImage, setUserImage] = useState('');
   const refButton = useRef<HTMLButtonElement>(null);
   const refSidebar = useRef<HTMLDivElement>(null);
+  const UlRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const image = user?.data?.image;
-    if (image) {
-      setUserImage(image);
-    } else {
-      setUserImage(UserImg);
-    }
+    const image = user?.avatar;
+    if (image) setUserImage(image);
+    else setUserImage(UserImg);
   }, [user]);
 
   function HandleSignOut() {
@@ -58,7 +56,7 @@ export function Sidebar({ children }: SidebarProps) {
           </button>
         </div>
 
-        <ul className="nav_list">
+        <ul className="nav_list" ref={UlRef}>
           <li>
             <Tooltip href="/" Name="Dashboard" icon={faTh} />
           </li>
@@ -69,7 +67,7 @@ export function Sidebar({ children }: SidebarProps) {
             <Tooltip href="/services" Name="Services" icon={faCog} />
           </li>
           <li>
-            <Tooltip href="/contact" Name="Contact" icon={faIdCard} />
+            <Tooltip href="/calendar" Name="calendar" icon={faCalendarAlt} />
           </li>
         </ul>
 

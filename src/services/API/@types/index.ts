@@ -44,15 +44,15 @@ export type OptionsProps = {
 
 export interface UserProps {
   id: number;
-  email: string;
   first_name: string;
   last_name: string;
-  cpf: string;
-  created_at: string;
-  updated_at: string;
-  refresh: string;
-  access: string;
-  data?: {
-    image: string;
-  } | undefined;
+  email: string;
+  role: null | string;
+  date_joined: string;
+  description: string;
+  avatar: null | string;
+  address: string;
+  state: string;
+  city: string;
+  phonesnumber: [];
 }

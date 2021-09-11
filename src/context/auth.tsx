@@ -25,20 +25,30 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const [isLoad, setIsLoad] = useState(true);
   const history = useHistory();
 
+  function SignOut() {
+    localStorage.clear();
+    setUser(null);
+  }
+
   useEffect(() => {
     (async () => {
-      const UserString = localStorage.getItem('@Numisma.User');
-      const AccessToken = localStorage.getItem('@Numisma.AccessToken');
-      const RefreshToken = localStorage.getItem('@Numisma.RefreshToken');
+      try {
+        const UserString = localStorage.getItem('@Numisma.User');
+        const AccessToken = localStorage.getItem('@Numisma.AccessToken');
+        const RefreshToken = localStorage.getItem('@Numisma.RefreshToken');
 
-      if (UserString && AccessToken && RefreshToken) {
-        const userJson = JSON.parse(UserString);
-        const access = await ApiMethods.checkToken(RefreshToken);
-        setUser(userJson);
-        localStorage.setItem('@Numisma.AccessToken', access);
-        BaseApi.defaults.headers.Authorization = `Bearer ${AccessToken}`;
+        if (UserString && AccessToken && RefreshToken) {
+          const userJson = JSON.parse(UserString);
+          const access = await ApiMethods.checkToken(RefreshToken);
+          setUser(userJson);
+          localStorage.setItem('@Numisma.AccessToken', access);
+          BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
+        }
+        setIsLoad(false);
+      } catch (error: any) {
+        SignOut();
+        setIsLoad(false);
       }
-      setIsLoad(false);
     })();
   }, [history]);
 
@@ -49,19 +59,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     const { access, refresh } = json;
     BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
 
-    const data: UserProps = {
-      access: json.access,
-      cpf: '000.000.000-00',
-      created_at: '2020-08-20T18:00:00.000Z',
-      email: 'bhryanstepenhen@A',
-      first_name: 'Bhryan',
-      id: 1,
-      last_name: 'Stepenhen',
-      refresh: json.refresh,
-      updated_at: '2020-08-20T18:00:00.000Z',
-    };
-
-    // await ApiMethods.GetData(email, password);
+    const data: UserProps = await ApiMethods.GetData();
 
     if (!data) throw new Error('Email ou senha incorretos');
 
@@ -77,11 +75,6 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     const { sucess } = await ApiMethods.SignUp(data);
     if (!sucess) throw new Error('Não foi possível fazer o cadastro');
     await SignIn(data.email, data.password);
-  }
-
-  function SignOut() {
-    localStorage.clear();
-    setUser(null);
   }
   return (
     <AuthContext.Provider

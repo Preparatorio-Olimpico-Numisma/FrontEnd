@@ -1,10 +1,7 @@
 import { BaseApi } from './ConfigApi';
 
-export async function GetData(email: string, password: string) {
-  const response = await BaseApi.post('/api/user/getdata', {
-    email,
-    password,
-  });
+export async function GetData() {
+  const response = await BaseApi.get('/api/user/getdata/');
   const data = await response.data;
-  return data;
+  return data.user;
 }

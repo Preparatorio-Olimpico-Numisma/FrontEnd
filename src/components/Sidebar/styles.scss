@@ -17,6 +17,9 @@
 }
 
 .logo_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .logo {
     color: var(--White);
     display: flex;
@@ -37,10 +40,6 @@
     }
   }
   button {
-    position: absolute;
-    left: 90%;
-    top: 6px;
-    margin-top: 10px;
     height: 28px;
     width: 28px;
     text-align: center;
@@ -48,8 +47,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    transform: translateX(-50%);
   }
   .btn {
     color: var(--White);
@@ -60,15 +57,20 @@
 
 .nav_list {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   li {
     position: relative;
     height: 50px;
-    width: 100%;
-    margin: 0 5px;
-    list-style: none;
     line-height: 50px;
     border-radius: 12px;
     margin-top: 20px;
+    margin: 0 5px;
+    width: 100%;
+    list-style: none;
     .Tooltip {
       display: none;
     }
@@ -123,11 +125,13 @@
 .sidebar.active {
   width: 78px;
   .logo_content {
+    height: 50px;
     .logo {
       opacity: 0;
+      display: none;
     }
     button {
-      left: 55%;
+      display: block;
     }
   }
   .nav_list {
@@ -168,5 +172,5 @@
   height: 100%;
   width: calc(100% - 240px);
   left: 240px;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
