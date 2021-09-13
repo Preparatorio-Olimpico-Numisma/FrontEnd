@@ -48,6 +48,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       } catch (error: any) {
         SignOut();
         setIsLoad(false);
+        history.replace('/');
       }
     })();
   }, [history]);
