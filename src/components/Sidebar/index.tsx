@@ -1,17 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   faBars,
-  faTh,
-  faUser,
-  faCalendarAlt,
-  faCog,
   faSignOutAlt,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuthContext } from '../../hooks/useAuth';
 
 import { Tooltip } from '../Tooltip';
+import { sidebarData } from './sidebardata';
 
 import Logo from '../../assets/images/LogoSideBar.svg';
 import UserImg from '../../assets/images/User.svg';
@@ -25,9 +23,9 @@ type SidebarProps = {
 export function Sidebar({ children }: SidebarProps) {
   const { user, SignOut } = useAuthContext();
   const [userImage, setUserImage] = useState('');
-  const refButton = useRef<HTMLButtonElement>(null);
-  const refSidebar = useRef<HTMLDivElement>(null);
-  const UlRef = useRef<HTMLUListElement>(null);
+  const [isActiveSidebar, setIsActiveSidebar] = useState(false);
+
+  const ToggleSidebar = () => setIsActiveSidebar(!isActiveSidebar);
 
   useEffect(() => {
     const image = user?.avatar;
@@ -38,37 +36,34 @@ export function Sidebar({ children }: SidebarProps) {
   function HandleSignOut() {
     SignOut();
   }
-
-  function HandleCloseSlidebar() {
-    refSidebar.current?.classList.toggle('active');
-  }
-
   return (
     <div className="SlidebarContainer">
-      <div className="sidebar" ref={refSidebar}>
+      <div className={isActiveSidebar ? 'sidebar active' : 'sidebar'}>
         <div className="logo_content">
           <div className="logo">
             <img src={Logo} alt="logo" className="Icon" />
             <div className="logo_name">Numisma</div>
           </div>
-          <button onClick={HandleCloseSlidebar} ref={refButton}>
-            <FontAwesomeIcon icon={faBars} className="Icon btn" />
+          <button onClick={ToggleSidebar}>
+            {isActiveSidebar ? (
+              <FontAwesomeIcon icon={faBars} className="Icon btn" />
+            ) : (
+              <FontAwesomeIcon icon={faTimes} className="Icon btn" />
+            )}
           </button>
         </div>
 
-        <ul className="nav_list" ref={UlRef}>
-          <li>
-            <Tooltip href="/" Name="Dashboard" icon={faTh} />
-          </li>
-          <li>
-            <Tooltip href="/user" Name="User" icon={faUser} />
-          </li>
-          <li>
-            <Tooltip href="/services" Name="Services" icon={faCog} />
-          </li>
-          <li>
-            <Tooltip href="/calendar" Name="calendar" icon={faCalendarAlt} />
-          </li>
+        <ul className="nav_list">
+          {sidebarData.map((item, index) => (
+            <li key={index}>
+              <Tooltip
+                Name={item.title}
+                href={item.path}
+                icon={item.icon}
+                active={window.location.pathname === item.path}
+              />
+            </li>
+          ))}
         </ul>
 
         <div className="profile_content">

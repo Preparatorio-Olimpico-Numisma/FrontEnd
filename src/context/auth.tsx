@@ -33,6 +33,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     (async () => {
       try {
+        setIsLoad(true);
         const UserString = localStorage.getItem('@Numisma.User');
         const AccessToken = localStorage.getItem('@Numisma.AccessToken');
         const RefreshToken = localStorage.getItem('@Numisma.RefreshToken');
@@ -45,10 +46,11 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
           BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
         }
         setIsLoad(false);
+        history.replace('/');
       } catch (error: any) {
         SignOut();
-        setIsLoad(false);
         history.replace('/');
+        setIsLoad(false);
       }
     })();
   }, [history]);

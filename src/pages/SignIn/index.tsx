@@ -17,7 +17,6 @@ import { BackArrow } from '../../components/BackArrow';
 import { ErrorMessage } from '../../components/Form/ErrorMessage';
 
 import './styles.scss';
-import { Load } from '../../components/Load';
 
 export function SignIn() {
   const history = useHistory();
@@ -33,7 +32,6 @@ export function SignIn() {
       setMessageError(error.message);
     }
   }
-  if (context.loading) return <Load />;
 
   return (
     <div id="Login">

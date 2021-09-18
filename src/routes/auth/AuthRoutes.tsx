@@ -10,7 +10,6 @@ export function AuthRoutes() {
       <Route path="/" exact component={Dashboard} />
       <Route path="/user" exact component={User} />
       <Route path="/calendar" exact component={CalendarComponent} />
-      <Route path="/services" exact component={User} />
     </Switch>
   );
 }

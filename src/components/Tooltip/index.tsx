@@ -8,12 +8,13 @@ type TooltipProps = {
   icon: IconProp;
   Name: string;
   href: string;
+  active?: boolean;
 };
 
-export function Tooltip({ Name, icon, href }: TooltipProps) {
+export function Tooltip({ Name, icon, href, active }: TooltipProps) {
   return (
     <div className="ToolTipContainer">
-      <Link to={href}>
+      <Link to={href} className={active ? 'active' : ''}>
         <FontAwesomeIcon icon={icon} size="2x" className="Icon" />
         <span className="links_name">{Name}</span>
       </Link>
