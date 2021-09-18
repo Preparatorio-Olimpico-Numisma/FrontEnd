@@ -15,6 +15,7 @@ import Logo from '../../assets/images/LogoSideBar.svg';
 import UserImg from '../../assets/images/User.svg';
 
 import './styles.scss';
+import { useSidebarContext } from '../../hooks/useSidebarContext';
 
 type SidebarProps = {
   children: React.ReactNode;
@@ -22,10 +23,10 @@ type SidebarProps = {
 
 export function Sidebar({ children }: SidebarProps) {
   const { user, SignOut } = useAuthContext();
+  const { active, setActive } = useSidebarContext();
   const [userImage, setUserImage] = useState('');
-  const [isActiveSidebar, setIsActiveSidebar] = useState(false);
 
-  const ToggleSidebar = () => setIsActiveSidebar(!isActiveSidebar);
+  const ToggleSidebar = () => setActive(!active);
 
   useEffect(() => {
     const image = user?.avatar;
@@ -36,16 +37,17 @@ export function Sidebar({ children }: SidebarProps) {
   function HandleSignOut() {
     SignOut();
   }
+
   return (
     <div className="SlidebarContainer">
-      <div className={isActiveSidebar ? 'sidebar active' : 'sidebar'}>
+      <div className={active ? 'sidebar active' : 'sidebar'}>
         <div className="logo_content">
           <div className="logo">
             <img src={Logo} alt="logo" className="Icon" />
             <div className="logo_name">Numisma</div>
           </div>
           <button onClick={ToggleSidebar}>
-            {isActiveSidebar ? (
+            {active ? (
               <FontAwesomeIcon icon={faBars} className="Icon btn" />
             ) : (
               <FontAwesomeIcon icon={faTimes} className="Icon btn" />
