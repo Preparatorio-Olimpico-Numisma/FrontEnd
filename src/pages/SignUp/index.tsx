@@ -1,15 +1,25 @@
 import { useRef, useState } from 'react';
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { validatePassword, ValidadeCPF } from '../../hooks/useForm';
+
+import {
+  validatePassword,
+  ValidadeCPF,
+  getMessageErrorsPassoword,
+} from '../../hooks/useForm';
 import { useAuthContext } from '../../hooks/useAuth';
 
 import { BackArrow } from '../../components/BackArrow';
 import { Button } from '../../components/Button';
 import { ErrorMessage } from '../../components/Form/ErrorMessage';
-import { Input } from '../../components/Form/Input';
+import { Input, MaskInput } from '../../components/Form/Input';
 import { Aside } from '../../components/Form/MessageForm';
 import { ScreenSuccess } from '../../components/screen-success/sucess';
 
@@ -24,14 +34,32 @@ interface handleSubimitProps extends SignUpProps {
 export function SignUp() {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [messages, setMessages] = useState('');
+  const [isFocus, setIsFocus] = useState(false);
+  const [cpf, setCpf] = useState('');
+  const [password, setPassword] = useState({
+    upperCase: false,
+    lowerCase: false,
+    number: false,
+    specialChar: false,
+    length: false,
+  });
+
   const formRef = useRef<FormHandles>(null);
   const context = useAuthContext();
 
   const toggleModalSuccess = () => setModalSuccess(!modalSuccess);
 
+  function onChangePassord(Password: string) {
+    const res = validatePassword(Password);
+    setPassword(res);
+  }
+
   async function handleSubmit(data: handleSubimitProps) {
     try {
-      if (!Number(data.cpf)) throw new Error('Insira apenas números');
+      const { ConfirmPassword, ...rest } = data;
+      const FinalData = rest;
+      FinalData.cpf = cpf.replace(/[^\d]+/g, '');
+
       const schema = Yup.object().shape({
         first_name: Yup.string()
           .required('O nome é obrigatório')
@@ -44,31 +72,32 @@ export function SignUp() {
           .email('digite um email válidio')
           .trim('Apenas espaços não é permitido'),
         password: Yup.string().required('O password é obrigatório'),
-        ConfirmPassword: Yup.string()
-          .required('Confirme sua senha')
-          .trim('Apenas espaços não é permitido'),
         cpf: Yup.number()
           .required('O cpf é obrigatório')
-          .integer('Insira números'),
+          .integer('O CPF é composto por números apenas.'),
       });
 
-      await schema.validate(data, { abortEarly: false });
+      await schema.validate(FinalData, { abortEarly: false });
 
-      const message = validatePassword(data.password);
+      const message = getMessageErrorsPassoword(FinalData.password);
       if (message) throw new Error(message);
 
-      if (data.password !== data.ConfirmPassword) {
+      if (FinalData.password !== ConfirmPassword)
         throw new Error('As senhas precisam ser iguais');
-      }
-      if (!ValidadeCPF(String(data.cpf))) {
+
+      if (Number.isNaN(Number(FinalData.cpf)))
+        throw new Error('Insira apenas números');
+
+      if (!ValidadeCPF(String(FinalData.cpf)))
         throw new Error('Insira um cpf válido');
-      }
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { ConfirmPassword, ...rest } = data;
 
       await context.SignUp(rest);
       toggleModalSuccess();
     } catch (error: any) {
+      if (String(error).includes('409')) {
+        setMessages('Usuário já cadastrado');
+        return;
+      }
       if (error instanceof Yup.ValidationError) setMessages(error.errors[0]);
       else setMessages(error.message);
     }
@@ -100,6 +129,7 @@ export function SignUp() {
             type="text"
             name="first_name"
             autoComplete="given-name"
+            ContainerClassName="firstChild"
             required
           />
 
@@ -119,13 +149,59 @@ export function SignUp() {
             required
           />
 
-          <Input
-            label="Senha"
-            type="password"
-            name="password"
-            autoComplete="new-password"
-            required
-          />
+          <div
+            className={
+              isFocus ? 'ContainerPassword focused' : 'ContainerPassword'
+            }
+          >
+            <Input
+              label="Senha"
+              type="password"
+              name="password"
+              autoComplete="new-password"
+              required
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(e) => onChangePassord(e.currentTarget.value)}
+            />
+            <div className="verification">
+              <p>
+                <FontAwesomeIcon
+                  icon={password.upperCase ? faCheckCircle : faTimesCircle}
+                  color={password.upperCase ? '#7fe465' : '#e83f5b'}
+                />
+                <span>Letra maiúscula</span>
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={password.lowerCase ? faCheckCircle : faTimesCircle}
+                  color={password.lowerCase ? '#7fe465' : '#e83f5b'}
+                />
+                <span>Letra minúscula</span>
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={password.number ? faCheckCircle : faTimesCircle}
+                  color={password.number ? '#7fe465' : '#e83f5b'}
+                />
+                <span>Número</span>
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={password.specialChar ? faCheckCircle : faTimesCircle}
+                  color={password.specialChar ? '#7fe465' : '#e83f5b'}
+                />
+                <span>Caractere especial</span>
+              </p>
+              <p>
+                <FontAwesomeIcon
+                  icon={password.length ? faCheckCircle : faTimesCircle}
+                  color={password.length ? '#7fe465' : '#e83f5b'}
+                />
+                <span>Mais de 8 caracteres</span>
+              </p>
+            </div>
+          </div>
 
           <Input
             label="Confirme sua senha"
@@ -135,13 +211,17 @@ export function SignUp() {
             required
           />
 
-          <Input
+          <MaskInput
             label="Coloque seu cpf"
             type="text"
             name="cpf"
             autoComplete="cpf"
-            minLength={11}
-            maxLength={11}
+            minLength={14}
+            maxLength={14}
+            ContainerClassName="lastChild"
+            InputMaskChange={(text: string) => setCpf(text)}
+            mask="CPF"
+            value={cpf}
             required
           />
 

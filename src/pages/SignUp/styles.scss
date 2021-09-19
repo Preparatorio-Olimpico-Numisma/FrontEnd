@@ -21,13 +21,12 @@
       font-size: 1.2rem;
     }
 
-    .InputContainer {
-      &:first-child {
-        border-radius: 1rem 1rem 0 0;
-      }
-      &:nth-child(6) {
-        border-radius: 0 0 1rem 1rem;
-      }
+    .firstChild {
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .lastChild {
+      border-radius: 0 0 1rem 1rem;
     }
 
     form {
@@ -37,10 +36,64 @@
       }
     }
   }
+}
 
-  @media (max-width: 1000px) {
-    main {
-      padding: 0 10%;
+.ContainerPassword {
+  position: relative;
+  .verification {
+    transition: all 0.3s ease;
+    background-color: var(--Deep-Blue);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    pointer-events: none;
+    p {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      span {
+        color: var(--White);
+      }
+    }
+  }
+  &:not(.focused) {
+    .verification {
+      position: absolute;
+      z-index: -1;
+      top: -50%;
+      right: 20%;
+      transform: translate(50%, 50%);
+    }
+  }
+  &.focused {
+    .verification {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      transition: 0.4s;
+      top: -100%;
+      right: 20%;
+      transform: translate(50%, -50%);
+    }
+  }
+}
+
+
+@media (max-width: 1000px) {
+  #SignUp main {
+    padding: 0 10%;
+  }
+  .ContainerPassword {
+    &:not(.focused) {
+      .verification {
+        right: 30%;
+      }
+    }
+    &.focused {
+      .verification {
+        padding: .5rem 1rem;
+        right: 30%;
+        transform: translate(50%, -50%);
+      }
     }
   }
 }
