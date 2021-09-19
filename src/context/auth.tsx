@@ -46,7 +46,6 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
           BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
         }
         setIsLoad(false);
-        history.replace('/');
       } catch (error: any) {
         SignOut();
         history.replace('/');
