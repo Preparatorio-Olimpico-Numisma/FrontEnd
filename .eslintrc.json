@@ -24,11 +24,17 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "react/button-has-type": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off",
-   "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", ".ts"] }],
+    "react/no-array-index-key": "off",
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".tsx", ".ts"] }
+    ],
     "import/prefer-default-export": "off",
     "import/no-unresolved": "error",
     "import/extensions": [
@@ -44,26 +50,13 @@
     "import/resolver": {
       "typescript": {},
       "node": {
-        "extensions": [
-            ".js",
-            ".jsx",
-            ".json",
-            ".ts",
-            ".tsx"
-        ],
-      "import/extensions": [
-          ".js",
-          ".mjs",
-          ".jsx",
-          ".svg",
-          ".ts",
-          ".tsx"
-      ],
-      "import/ignore": [
+        "extensions": [".js", ".jsx", ".json", ".ts", ".tsx"],
+        "import/extensions": [".js", ".mjs", ".jsx", ".svg", ".ts", ".tsx"],
+        "import/ignore": [
           "node_modules",
           "\\.(coffee|scss|css|less|hbs|svg|json)$"
-      ]
-    }
+        ]
+      }
     }
   }
 }

@@ -1,0 +1,99 @@
+#SignUp {
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: var(--Bg);
+
+  main {
+    width: 100%;
+    height: 100%;
+    padding: 0 10%;
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+      color: var(--Deep-Blue);
+      font-size: 2.3rem;
+    }
+
+    h4 {
+      color: var(--gray);
+      font-size: 1.2rem;
+    }
+
+    .firstChild {
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .lastChild {
+      border-radius: 0 0 1rem 1rem;
+    }
+
+    form {
+      margin-top: 2rem;
+      > button {
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+.ContainerPassword {
+  position: relative;
+  .verification {
+    transition: all 0.3s ease;
+    background-color: var(--Deep-Blue);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    pointer-events: none;
+    p {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      span {
+        color: var(--White);
+      }
+    }
+  }
+  &:not(.focused) {
+    .verification {
+      position: absolute;
+      z-index: -1;
+      top: -50%;
+      right: 20%;
+      transform: translate(50%, 50%);
+    }
+  }
+  &.focused {
+    .verification {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      transition: 0.4s;
+      top: -100%;
+      right: 20%;
+      transform: translate(50%, -50%);
+    }
+  }
+}
+
+
+@media (max-width: 1000px) {
+  #SignUp main {
+    padding: 0 10%;
+  }
+  .ContainerPassword {
+    &:not(.focused) {
+      .verification {
+        right: 30%;
+      }
+    }
+    &.focused {
+      .verification {
+        padding: .5rem 1rem;
+        right: 30%;
+        transform: translate(50%, -50%);
+      }
+    }
+  }
+}

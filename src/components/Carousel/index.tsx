@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CardArray } from './CardArray';
 import { Card } from '../Card';
 
@@ -18,7 +19,7 @@ export function Carousel() {
     return CardArray.map((card: CardProps) => {
       return (
         <div key={card.id} className="item">
-          <a href={card.link}>
+          <Link to={card.link}>
             <Card
               Author={card.Author}
               Avaliation={card.Avaliation}
@@ -27,7 +28,7 @@ export function Carousel() {
               imageCard={card.imageCard}
               key={card.id}
             />
-          </a>
+          </Link>
         </div>
       );
     });

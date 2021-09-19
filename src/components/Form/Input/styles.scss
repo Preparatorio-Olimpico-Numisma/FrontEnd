@@ -17,7 +17,7 @@
     background: none;
     border: none;
     outline: none;
-    font-family: "Poppins";
+    font-family: 'Poppins';
     font-size: 1.1rem;
     position: relative;
     height: 100%;
@@ -32,18 +32,24 @@
       pointer-events: none;
     }
 
-    &:not(.File):focus ~ label, &:not(.File):valid~ label {
+    &:focus ~ label,
+    &:valid ~ label {
       transform: translateY(-24px);
       font-size: 0.8em;
       letter-spacing: 0.1em;
       padding-top: 0.5rem;
     }
-    
-    &.File ~ label{
+
+    &.File ~ label {
       transform: translateY(-24px);
       font-size: 0.8em;
       letter-spacing: 0.1em;
       padding-top: 0.5rem;
     }
+  }
+
+  .ImageInput {
+    width: 30px;
+    height: 50px;
   }
 }

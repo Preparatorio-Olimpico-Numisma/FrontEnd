@@ -1,17 +1,42 @@
 export function validatePassword(password: string) {
-  if (!password.match(/[A-Z]/)) {
+  const errors = {
+    upperCase: false,
+    lowerCase: false,
+    number: false,
+    specialChar: false,
+    length: false,
+  };
+  if (password.match(/[A-Z]/g)) errors.upperCase = true;
+  if (password.match(/[a-z]/g)) errors.lowerCase = true;
+  if (password.match(/\d/g)) errors.number = true;
+  if (password.match(/[!@#$%^&*()_+?|[\]{};:><,'"]/g))
+    errors.specialChar = true;
+  if (password.length > 8) errors.length = true;
+  const { upperCase, lowerCase, number, specialChar, length } = errors;
+  return {
+    upperCase,
+    lowerCase,
+    number,
+    specialChar,
+    length,
+  };
+}
+
+export function getMessageErrorsPassoword(password: string) {
+  const errors = validatePassword(password);
+  if (!errors.upperCase) {
     return 'Sua senha precisa ter pelo menos uma letra maiúscula.';
   }
-  if (!password.match(/[a-z]/)) {
+  if (!errors.lowerCase) {
     return 'Sua senha precisa ter pelo menos uma letra minuscula.';
   }
-  if (!password.match(/[1-9]/)) {
+  if (!errors.number) {
     return 'Sua senha precisa ter pelo menos um número.';
   }
-  if (!password.match(/[!@#$*&]/)) {
+  if (!errors.specialChar) {
     return 'Sua senha precisa ter pelo menos um caractere especial.';
   }
-  if (password.length < 8) return 'Sua senha precisa ter mais de 8 caracteres.';
+  if (!errors.length) return 'Sua senha precisa ter mais de 8 caracteres.';
   return '';
 }
 

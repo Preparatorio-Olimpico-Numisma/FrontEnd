@@ -1,0 +1,36 @@
+.SelectContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.5rem;
+
+  h2 {
+    color: var(--gray);
+  }
+}
+
+.SelectItem {
+  width: 100%;
+  select {
+    width: 100%;
+    background-color: var(--White);
+    color: var(--Deep-Blue);
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    > option {
+      background-color: var(--White);
+      color: var(--Black);
+      &:hover,
+      &:focus,
+      &:active,
+      &:checked {
+        background-color: var(--Deep-Blue);
+        color: var(--White);
+      }
+    }
+  }
+}

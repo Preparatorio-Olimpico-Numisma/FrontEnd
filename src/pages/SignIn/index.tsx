@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 
 import { Form } from '@unform/web';
-import { API } from '../../services/API';
-import { SingInProps } from '../../services/API/@types';
+
+import { SignInProps } from '../../services/API/@types';
+import { useAuthContext } from '../../hooks/useAuth';
 
 import Email from '../../assets/login/Email.svg';
 import Key from '../../assets/login/Key.svg';
@@ -17,16 +18,17 @@ import { ErrorMessage } from '../../components/Form/ErrorMessage';
 
 import './styles.scss';
 
-export function SingIn() {
+export function SignIn() {
   const history = useHistory();
+  const context = useAuthContext();
   const [messageError, setMessageError] = useState('');
 
-  async function handleSubmit(event: SingInProps) {
+  async function handleSubmit(event: SignInProps) {
     try {
-      await API.SingIn(event);
+      await context.SignIn(event.email, event.password);
       setMessageError('Logado');
       return;
-    } catch (error) {
+    } catch (error: any) {
       setMessageError(error.message);
     }
   }

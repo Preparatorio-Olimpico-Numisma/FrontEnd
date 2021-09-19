@@ -64,9 +64,11 @@ export function About() {
             </ul>
           </div>
         </section>
-        <section>
-          <img src={Person} alt="Person" />
-        </section>
+        {window.innerWidth > 1000 ? (
+          <section className="Person">
+            <img src={Person} alt="Person" />
+          </section>
+        ) : null}
       </main>
     </div>
   );
