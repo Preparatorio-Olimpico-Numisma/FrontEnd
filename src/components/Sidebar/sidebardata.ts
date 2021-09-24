@@ -12,7 +12,7 @@ export const sidebarData = [
     path: '/user',
   },
   {
-    title: 'calendar',
+    title: 'Calendar',
     icon: faCalendarAlt,
     path: '/calendar',
   },

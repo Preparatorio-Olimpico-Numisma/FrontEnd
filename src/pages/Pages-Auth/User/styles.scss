@@ -1,0 +1,109 @@
+$Background: #f0f0f7;
+$PrimaryLighter: #9871f5;
+$PrimaryLight: #916bea;
+$Primary: #8257e5;
+$PrimaryDark: #774dd6;
+$Primary-Darker: #6842c2;
+$Secundary: #04d361;
+$SecundaryDark: #04bf58;
+$TitlePrimary: #ffffff;
+$TextPrimary: #d4c2ff;
+$TextTitle: #32264d;
+$TextComplement: #9c98a6;
+$TextBase: #6a6180;
+$LineInWhite: #e6e6f0;
+$InputBackground: #f8f8fc;
+$ButtonText: #ffffff;
+$BoxBase: #ffffff;
+$BoxFooter: #fafafc;
+
+.UserMain {
+  width: 100%;
+  position: relative;
+}
+
+.ContainerUser {
+  padding: 0 2%;
+  background: $LineInWhite;
+  height: 100%;
+  max-width: 736px;
+  margin: 0 auto;
+}
+
+.ContainerImageUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  height: 500px;
+  background: var(--Deep-Blue);
+  position: relative;
+  .imageBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .UserImage {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      width: 80%;
+      height: 80%;
+      path {
+        fill: var(--gray);
+
+      }
+    }
+
+  }
+}
+
+.TitleUser {
+  margin-bottom: 1rem;
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Poppins', arial, sans-serif;
+    color: $TextTitle;
+    padding: 1rem 0;
+  }
+  .line {
+    width: 100%;
+    height: 3px;
+    background-color: $LineInWhite;
+    margin-bottom: 1rem;
+    margin: 0 auto;
+  }
+}
+
+.NameContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 1000px) {
+  .ContainerImageUser {
+    height: 200px;
+  }
+}

@@ -92,7 +92,7 @@ export function SignIn() {
         <div className="SignUp">
           <h4>
             Ainda não possui conta?
-            <button type="button" onClick={() => history.push('/singup')}>
+            <button type="button" onClick={() => history.push('/signup')}>
               Cadastre-se
             </button>
           </h4>

@@ -19,7 +19,7 @@ export function Start() {
             Numisma é um preparatório olímpico com foco em olimpíadas nacionais
             de matemática, informática e astronomia.
           </p>
-          <button onClick={() => history.push('/singup')}>COMECE AQUI</button>
+          <button onClick={() => history.push('/signup')}>COMECE AQUI</button>
         </section>
         {window.innerWidth > 1000 ? (
           <section className="SectionImage">

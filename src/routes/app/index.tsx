@@ -10,8 +10,8 @@ export function AppRoutes() {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/singin" exact component={SignIn} />
-      <Route path="/singup" exact component={SignUp} />
+      <Route path="/signin" exact component={SignIn} />
+      <Route path="/signup" exact component={SignUp} />
       <Route path="/reset-password" exact component={ResetPassword} />
       <Route path="/success" exact component={ScreenSuccess} />
     </Switch>

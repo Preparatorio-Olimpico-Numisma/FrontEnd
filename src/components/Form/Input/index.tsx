@@ -90,6 +90,29 @@ function maskDate(value: string) {
   return dateNumbersMask;
 }
 
+function maskPhone(value: string) {
+  const phoneNumbers = value.replace(/\D/g, '');
+
+  if (phoneNumbers.length <= 6) {
+    const phoneNumbersMask = phoneNumbers.replace(/^(\d{2})(\d)/, '($1) $2');
+    return phoneNumbersMask;
+  }
+
+  if (phoneNumbers.length <= 10) {
+    const phoneNumbersMask = phoneNumbers.replace(
+      /^(\d{2})(\d{4})(\d)/,
+      '($1) $2-$3'
+    );
+    return phoneNumbersMask;
+  }
+
+  const phoneNumbersMask = phoneNumbers.replace(
+    /^(\d{2})(\d{5})(\d{4})/,
+    '($1) $2-$3'
+  );
+  return phoneNumbersMask;
+}
+
 export function MaskInput({
   InputMaskChange,
   mask,
@@ -115,6 +138,11 @@ export function MaskInput({
   function handleTextChange(text: string) {
     if (mask === 'DATE') InputMaskChange(maskDate(text));
     else InputMaskChange(maskCPF(text));
+    if (mask === 'CPF') InputMaskChange(maskCPF(text));
+    if (mask === 'CNPJ') InputMaskChange(maskCPF(text));
+    if (mask === 'CEP') InputMaskChange(maskCPF(text));
+    if (mask === 'PHONE') InputMaskChange(maskPhone(text));
+    if (mask === 'DATE') InputMaskChange(maskDate(text));
   }
 
   return (
