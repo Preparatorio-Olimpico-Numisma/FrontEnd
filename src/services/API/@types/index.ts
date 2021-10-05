@@ -54,5 +54,5 @@ export interface UserProps {
   address: string;
   state: string;
   city: string;
-  phonesnumber: [];
+  phonesnumber: [] | null | string;
 }

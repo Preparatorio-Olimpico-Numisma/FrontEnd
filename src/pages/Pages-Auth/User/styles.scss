@@ -20,14 +20,16 @@ $BoxFooter: #fafafc;
 .UserMain {
   width: 100%;
   position: relative;
+  background: $LineInWhite;
 }
 
-.ContainerUser {
-  padding: 0 2%;
-  background: $LineInWhite;
-  height: 100%;
-  max-width: 736px;
+.UserContainer {
+  position: relative;
   margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ContainerImageUser {
@@ -71,10 +73,8 @@ $BoxFooter: #fafafc;
       height: 80%;
       path {
         fill: var(--gray);
-
       }
     }
-
   }
 }
 
@@ -87,19 +87,98 @@ $BoxFooter: #fafafc;
     color: $TextTitle;
     padding: 1rem 0;
   }
-  .line {
-    width: 100%;
-    height: 3px;
-    background-color: $LineInWhite;
-    margin-bottom: 1rem;
-    margin: 0 auto;
-  }
+}
+
+.line {
+  width: 100%;
+  height: 3px;
+  background-color: $LineInWhite;
+  margin: 1rem auto;
 }
 
 .NameContainer {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+.UserItem {
+  padding: 0 2%;
+  background: var(--White);
+  max-width: 736px;
+  border-radius: 2rem;
+  // position: absolute;
+  // left: 50%;
+  // top: -100px;
+  transform: translateY(-50px);
+}
+// Fiels
+.InputUserContainer {
+  margin-top: 1rem;
+}
+
+.PhoneNumber {
+  position: relative;
+  margin: 1rem 0;
+  button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    border: 0;
+    background: transparent;
+    color: var(--gray);
+
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover {
+      color: var(--Deep-Blue);
+    }
+  }
+  
+  label {
+    color: $TextBase;
+    font-size: 16px;
+    font-family: 'Proppins', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+}
+
+// footert alert
+.AlertAndSaveForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  .alert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  strong {
+    color: var(--Deep-Blue);
+  }
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  button {
+    padding: 0.8rem;
+    font-size: 1.3rem;
+    border: 1px solid $Secundary;
+    transition: all 0.3s;
+    border-radius: 0.5rem;
+    &:hover {
+      background: $SecundaryDark;
+      color: $ButtonText;
+    }
+  }
 }
 
 @media (max-width: 1000px) {

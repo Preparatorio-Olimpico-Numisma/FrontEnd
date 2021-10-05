@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form } from '@unform/web';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuthContext } from '../../../hooks/useAuth';
@@ -10,17 +10,24 @@ import { Input, TextArea } from '../../../components/UserComponnents/Input';
 
 // import ImageProfile from '../../../assets/images/User.svg';
 import BackgroundImage from '../../../assets/images/Backgound.svg';
+import Alert from '../../../assets/images/Alert.svg';
 
 import './styles.scss';
+import { MaskInput } from '../../../components/Form/Input';
 
 export function User() {
   const { user } = useAuthContext();
   const [userProfile, setUserProfile] = useState(user);
+  const [phonesNumbers, setPhonesNumbers] = useState([user?.phonesnumber]);
 
+  function addPhoneNumber() {
+    if (phonesNumbers.length > 4) return;
+    setPhonesNumbers([...phonesNumbers, null]);
+  }
   return (
     <Sidebar>
       <main className="UserMain">
-        <div className="ContainerImageUser">
+        <section className="ContainerImageUser">
           <div className="imageBackground">
             <img src={BackgroundImage} alt="bg" />
           </div>
@@ -35,75 +42,120 @@ export function User() {
             {userProfile?.first_name} {userProfile?.last_name}
           </h1>
           <h3>{userProfile?.role ? userProfile.role : 'Aluno'}</h3>
-        </div>
-        <section className="ContainerUser">
-          <div className="TitleUser">
-            <h1>Seus Dados</h1>
-            <div className="line" />
-          </div>
-          {/* eslint-disable-next-line no-console */}
-          <Form onSubmit={(e) => console.log(e)}>
-            <div className="NameContainer">
-              <Input
-                label="Nome"
-                name="firstName"
-                value={userProfile?.first_name}
-                onChange={(e) => {
-                  if (userProfile) {
-                    setUserProfile({
-                      ...userProfile,
-                      first_name: e.target.value,
-                    });
-                  }
-                }}
-              />
-              <Input
-                label="Sobrenome"
-                name="lastName"
-                value={userProfile?.last_name}
-                onChange={(e) => {
-                  if (userProfile) {
-                    setUserProfile({
-                      ...userProfile,
-                      last_name: e.target.value,
-                    });
-                  }
-                }}
-              />
-            </div>
-            <div className="ContainerEmailAndNumberPhone">
-              <Input
-                label="Email"
-                name="email"
-                value={userProfile?.email}
-                onChange={(e) => {
-                  if (userProfile) {
-                    setUserProfile({
-                      ...userProfile,
-                      email: e.target.value,
-                    });
-                  }
-                }}
-              />
-              <Input label="Telefone" name="phone" />
-            </div>
-            <div className="description">
-              <TextArea
-                label="Biografia"
-                name="description"
-                value={userProfile?.description}
-                onChange={(e) => {
-                  if (userProfile) {
-                    setUserProfile({
-                      ...userProfile,
-                      description: e.target.value,
-                    });
-                  }
-                }}
-              />
-            </div>
-          </Form>
         </section>
+
+        <div className="UserContainer">
+          <section className="UserItem">
+            <div className="TitleUser">
+              <h1>Seus Dados</h1>
+              <div className="line" />
+            </div>
+            {/* eslint-disable-next-line no-console */}
+            <Form onSubmit={(e) => console.log(e)}>
+              <div className="NameContainer">
+                <Input
+                  label="Nome"
+                  name="firstName"
+                  value={userProfile?.first_name}
+                  onChange={(e) => {
+                    if (userProfile) {
+                      setUserProfile({
+                        ...userProfile,
+                        first_name: e.target.value,
+                      });
+                    }
+                  }}
+                />
+                <Input
+                  label="Sobrenome"
+                  name="lastName"
+                  value={userProfile?.last_name}
+                  onChange={(e) => {
+                    if (userProfile) {
+                      setUserProfile({
+                        ...userProfile,
+                        last_name: e.target.value,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="ContainerEmailAndNumberPhone">
+                <Input
+                  label="Email"
+                  name="email"
+                  value={userProfile?.email}
+                  onChange={(e) => {
+                    if (userProfile) {
+                      setUserProfile({
+                        ...userProfile,
+                        email: e.target.value,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="PhoneNumber">
+                <label>Números de telefones</label>
+                <button type="button" onClick={addPhoneNumber}>
+                  <FontAwesomeIcon icon={faPlus} />
+                  Novo número
+                </button>
+                <div className="line" />
+                <div className="PhoneNumberItem">
+                  {phonesNumbers?.map((phone, index) => {
+                    return (
+                      <div className="PhoneNumberItemContainer" key={index}>
+                        <MaskInput
+                          label={`Número ${index + 1}`}
+                          name={`phoneNumber${index}`}
+                          value={phone ? phone[index] : ''}
+                          InputMaskChange={(e) => {
+                            if (phone) {
+                              phonesNumbers[index] = e;
+                              setPhonesNumbers(phonesNumbers);
+                            }
+                          }}
+                          mask="PHONE"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="description">
+                <TextArea
+                  label="Biografia"
+                  name="description"
+                  maxLength={200}
+                  value={userProfile?.description}
+                  onChange={(e) => {
+                    if (userProfile) {
+                      setUserProfile({
+                        ...userProfile,
+                        description: e.target.value,
+                      });
+                    }
+                  }}
+                />
+              </div>
+              <div className="line" />
+              <footer className="AlertAndSaveForm">
+                <div className="alert">
+                  <img src={Alert} alt="Alert" />
+                  <div>
+                    <strong>Importnate!</strong>
+                    <p>Preencha todos os dados corretamentes</p>
+                  </div>
+                </div>
+                <div className="submit">
+                  <button type="submit">Salvar dados</button>
+                </div>
+              </footer>
+            </Form>
+          </section>
+        </div>
       </main>
     </Sidebar>
   );
