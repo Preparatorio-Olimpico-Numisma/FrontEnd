@@ -1,19 +1,22 @@
 import { useState } from 'react';
 import { Form } from '@unform/web';
-import { faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuthContext } from '../../../hooks/useAuth';
 
 import { Sidebar } from '../../../components/Sidebar';
-import { Input, TextArea } from '../../../components/UserComponnents/Input';
+import {
+  Input,
+  TextArea,
+  MaskInput,
+} from '../../../components/UserComponnents/Input';
 
 // import ImageProfile from '../../../assets/images/User.svg';
 import BackgroundImage from '../../../assets/images/Backgound.svg';
 import Alert from '../../../assets/images/Alert.svg';
 
 import './styles.scss';
-import { MaskInput } from '../../../components/Form/Input';
 
 export function User() {
   const { user } = useAuthContext();
@@ -23,6 +26,11 @@ export function User() {
   function addPhoneNumber() {
     if (phonesNumbers.length > 4) return;
     setPhonesNumbers([...phonesNumbers, null]);
+  }
+  function removeButtonElement(index: number) {
+    const newPhonesNumbers = [...phonesNumbers];
+    newPhonesNumbers.splice(index, 1);
+    setPhonesNumbers(newPhonesNumbers);
   }
   return (
     <Sidebar>
@@ -109,15 +117,18 @@ export function User() {
                         <MaskInput
                           label={`Número ${index + 1}`}
                           name={`phoneNumber${index}`}
-                          value={phone ? phone[index] : ''}
+                          value={phone !== null ? phone[index] : ''}
                           InputMaskChange={(e) => {
-                            if (phone) {
-                              phonesNumbers[index] = e;
-                              setPhonesNumbers(phonesNumbers);
-                            }
+                            console.log(e);
+                            phonesNumbers[index] = e;
+                            setPhonesNumbers(phonesNumbers);
                           }}
                           mask="PHONE"
                         />
+                        <button onClick={() => removeButtonElement(index)}>
+                          <FontAwesomeIcon icon={faTrashAlt} color="#e83f5b" />
+                          <span>Remover</span>
+                        </button>
                       </div>
                     );
                   })}
