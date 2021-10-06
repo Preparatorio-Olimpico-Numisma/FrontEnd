@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form } from '@unform/web';
 import { faUser, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as Yup from 'yup';
 
 import { useAuthContext } from '../../../hooks/useAuth';
 
@@ -18,10 +19,23 @@ import Alert from '../../../assets/images/Alert.svg';
 
 import './styles.scss';
 
+interface userData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber0?: string;
+  phoneNumber1?: string;
+  phoneNumber2?: string;
+  phoneNumber3?: string;
+  phoneNumber4?: string;
+  description?: string;
+}
+
 export function User() {
   const { user } = useAuthContext();
   const [userProfile, setUserProfile] = useState(user);
   const [phonesNumbers, setPhonesNumbers] = useState([user?.phonesnumber]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   function addPhoneNumber() {
     if (phonesNumbers.length > 4) return;
@@ -32,6 +46,61 @@ export function User() {
     newPhonesNumbers.splice(index, 1);
     setPhonesNumbers(newPhonesNumbers);
   }
+  const validationPhones = {
+    phoneNumber0(value: string) {
+      return validationPhones.errorAll(value, 1);
+    },
+    phoneNumber1(value: string) {
+      return validationPhones.errorAll(value, 2);
+    },
+    phoneNumber2(value: string) {
+      return validationPhones.errorAll(value, 3);
+    },
+    phoneNumber3(value: string) {
+      return validationPhones.errorAll(value, 4);
+    },
+    phoneNumber4(value: string) {
+      return validationPhones.errorAll(value, 5);
+    },
+    errorAll(value: string, phone: number) {
+      const phoneNumber = value.match(/[0-9]/g)?.join('');
+      const message = `O número ${phone} não é válido`;
+      const isNaN = Number.isNaN(Number(phoneNumber?.length));
+      if (isNaN) return message;
+      return Number(phoneNumber?.length) < 10 ? message : false;
+    },
+  };
+  async function AlterDataUser(data: userData) {
+    try {
+      setErrorMessage('');
+      const schema = Yup.object().shape({
+        firstName: Yup.string()
+          .required('Nome obrigatório')
+          .min(3, 'O nome tem que ter no mínimo 3 caracteres'),
+        lastName: Yup.string()
+          .required('Sobrenome obrigatório')
+          .min(3, 'O Sobrenome tem que ter no mínimo 3 caracteres'),
+        email: Yup.string().email('Email inválido').required('Obrigatório'),
+      });
+      await schema.validate(data);
+      Object.entries(data).forEach(([key, value]) => {
+        if (
+          key === 'phoneNumber0' ||
+          key === 'phoneNumber1' ||
+          key === 'phoneNumber2' ||
+          key === 'phoneNumber3' ||
+          key === 'phoneNumber4'
+        ) {
+          const phone = key;
+          const isValid = validationPhones[phone](value);
+          if (isValid) throw new Error(isValid);
+        }
+      }, []);
+    } catch (error: any) {
+      setErrorMessage(error.message);
+    }
+  }
+
   return (
     <Sidebar>
       <main className="UserMain">
@@ -57,9 +126,9 @@ export function User() {
             <div className="TitleUser">
               <h1>Seus Dados</h1>
               <div className="line" />
+              <div className="error">{errorMessage}</div>
             </div>
-            {/* eslint-disable-next-line no-console */}
-            <Form onSubmit={(e) => console.log(e)}>
+            <Form onSubmit={(data) => AlterDataUser(data)}>
               <div className="NameContainer">
                 <Input
                   label="Nome"
@@ -86,6 +155,7 @@ export function User() {
                       });
                     }
                   }}
+                  required
                 />
               </div>
               <div className="ContainerEmailAndNumberPhone">
@@ -101,6 +171,8 @@ export function User() {
                       });
                     }
                   }}
+                  required
+                  type="email"
                 />
               </div>
               <div className="PhoneNumber">
@@ -125,6 +197,7 @@ export function User() {
                           }}
                           mask="PHONE"
                           maxLength={15}
+                          required
                         />
                         <button onClick={() => removeButtonElement(index)}>
                           <FontAwesomeIcon icon={faTrashAlt} color="#e83f5b" />
