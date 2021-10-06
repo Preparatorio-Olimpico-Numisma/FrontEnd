@@ -117,13 +117,14 @@ export function User() {
                         <MaskInput
                           label={`Número ${index + 1}`}
                           name={`phoneNumber${index}`}
-                          value={phone !== null ? phone[index] : ''}
+                          value={phone || ''}
                           InputMaskChange={(e) => {
-                            console.log(e);
-                            phonesNumbers[index] = e;
-                            setPhonesNumbers(phonesNumbers);
+                            const newPhonesNumbers = [...phonesNumbers];
+                            newPhonesNumbers[index] = e;
+                            setPhonesNumbers(newPhonesNumbers);
                           }}
                           mask="PHONE"
+                          maxLength={15}
                         />
                         <button onClick={() => removeButtonElement(index)}>
                           <FontAwesomeIcon icon={faTrashAlt} color="#e83f5b" />

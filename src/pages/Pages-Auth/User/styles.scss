@@ -107,9 +107,6 @@ $BoxFooter: #fafafc;
   background: var(--White);
   max-width: 736px;
   border-radius: 2rem;
-  // position: absolute;
-  // left: 50%;
-  // top: -100px;
   transform: translateY(-50px);
 }
 // Fiels
@@ -133,12 +130,12 @@ $BoxFooter: #fafafc;
     color: var(--gray);
 
     cursor: pointer;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     &:hover {
       color: var(--Deep-Blue);
     }
   }
-  
+
   label {
     color: $TextBase;
     font-size: 16px;
@@ -163,9 +160,9 @@ $BoxFooter: #fafafc;
       position: absolute;
       left: 0;
       top: 50%;
-      transform: translate(50%, -50%);
+      transform: translate(50%, 70%);
       opacity: 0;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
     }
     &:hover span {
       opacity: 1;
@@ -175,7 +172,7 @@ $BoxFooter: #fafafc;
       height: 100%;
     }
   }
-  @media(max-width:1000px) {
+  @media (max-width: 1000px) {
     button span {
       display: none;
     }
@@ -218,5 +215,27 @@ $BoxFooter: #fafafc;
 @media (max-width: 1000px) {
   .ContainerImageUser {
     height: 200px;
+  }
+  .NameContainer {
+    flex-direction: column;
+  }
+  .ContainerImageUser {
+    height: 250px
+  }
+  .UserItem {
+    border-radius: 1rem;
+    height: 100%;
+    transform: none;
+  }
+  .AlertAndSaveForm {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .AlertAndSaveForm {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
