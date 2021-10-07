@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { SignUpProps, UserProps } from '../services/API/@types';
 import { ApiMethods } from '../services/API';
 import { BaseApi } from '../services/API/ConfigApi';
+import { AlterUserProps } from '../services/API/AlterUser';
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -16,6 +17,7 @@ type AuthContextData = {
   SignIn(email: string, password: string): Promise<void>;
   SignOut(): void;
   SignUp(data: SignUpProps): Promise<void>;
+  AlterUser(data: UserProps): Promise<void>;
 };
 
 const AuthContext = createContext({} as AuthContextData);
@@ -54,6 +56,12 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     })();
   }, [history]);
 
+  useEffect(() => {
+    setIsLoad(true);
+    localStorage.setItem('@Numisma.User', JSON.stringify(user));
+    setIsLoad(false);
+  }, [user]);
+
   async function SignIn(email: string, password: string) {
     const json = await ApiMethods.SignIn({ email, password });
 
@@ -78,6 +86,12 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     if (!sucess) throw new Error('Não foi possível fazer o cadastro');
     await SignIn(data.email, data.password);
   }
+
+  async function AlterUser(data: AlterUserProps): Promise<void> {
+    const { sucess } = await ApiMethods.AlterUser(data);
+    if (!sucess) throw new Error('Não foi possível alterar o usuário');
+    setUser(data);
+  }
   return (
     <AuthContext.Provider
       value={{
@@ -87,6 +101,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
         SignUp,
         user,
         loading: isLoad,
+        AlterUser,
       }}
     >
       {children}

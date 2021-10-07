@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export type SignInProps = {
   email: string;
   password: string;
@@ -43,16 +44,16 @@ export type OptionsProps = {
 };
 
 export interface UserProps {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  role: null | string;
-  date_joined: string;
-  description: string;
-  avatar: null | string;
-  address: string;
-  state: string;
-  city: string;
-  phonesnumber: [] | null | string;
+  id: number | undefined;
+  first_name: string | undefined;
+  last_name: string | undefined;
+  email: string | undefined;
+  role: null | string | undefined;
+  date_joined: string | undefined;
+  description: string | undefined;
+  avatar: null | string | undefined;
+  address: string | undefined;
+  state: string | undefined;
+  city: string | undefined;
+  phonesnumber: string[] | null[] | any[] | any;
 }

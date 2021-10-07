@@ -32,14 +32,15 @@ interface userData {
 }
 
 export function User() {
-  const { user } = useAuthContext();
+  const { user, AlterUser } = useAuthContext();
   const [userProfile, setUserProfile] = useState(user);
   const [phonesNumbers, setPhonesNumbers] = useState([user?.phonesnumber]);
   const [errorMessage, setErrorMessage] = useState('');
 
   function addPhoneNumber() {
     if (phonesNumbers.length > 4) return;
-    setPhonesNumbers([...phonesNumbers, null]);
+    const newPhonesNumbers = [...phonesNumbers, null];
+    setPhonesNumbers(newPhonesNumbers);
   }
   function removeButtonElement(index: number) {
     const newPhonesNumbers = [...phonesNumbers];
@@ -96,6 +97,24 @@ export function User() {
           if (isValid) throw new Error(isValid);
         }
       }, []);
+      const phones = phonesNumbers.map((phone) => {
+        const phoneNumber = phone?.match(/[0-9]/g)?.join('');
+        return phoneNumber;
+      });
+      await AlterUser({
+        id: user?.id,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        email: data.email,
+        role: user?.role,
+        date_joined: user?.date_joined,
+        description: data?.description,
+        avatar: user?.avatar,
+        address: user?.address,
+        state: user?.state,
+        city: user?.city,
+        phonesnumber: phones,
+      });
     } catch (error: any) {
       setErrorMessage(error.message);
     }

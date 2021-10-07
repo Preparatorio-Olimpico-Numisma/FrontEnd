@@ -8,5 +8,5 @@ export async function checkToken(TokenRefresh: string) {
     throw new Error(response.statusText);
   }
   const data = await response.data;
-  return data;
+  return data.access;
 }
