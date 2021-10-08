@@ -3,3 +3,5 @@ declare module 'react/jsx-runtime' {
 
   export default React;
 }
+
+declare module 'react-router-dom';
