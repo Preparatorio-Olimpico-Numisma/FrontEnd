@@ -1,31 +1,35 @@
 :root {
-  --Deep-Blue: #2400FF;
-  --Purple-Dark: #220E75;
-  --light-blue: #00C2FF;
+  --Deep-Blue: #2400ff;
+  --Purple-Dark: #220e75;
+  --light-blue: #00c2ff;
   --red: #e83f5b;
-  --gray: #5C5C5C;
+  --gray: #5c5c5c;
   --White: #fff;
   --Black: #ffffff00;
-  --Bg: #EEE;
+  --Bg: #eee;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins';
+  font-family: 'Poppins', arial, sans-serif;
 }
-
 
 ul {
   list-style: none;
 }
 
-h1, p, a, input, button {
-  font-family: 'Poppins';
+h1,
+p,
+a,
+input,
+button {
+  font-family: 'Poppins', arial, sans-serif;
 }
 
-button, a {
+button,
+a {
   cursor: pointer;
   background: transparent;
   border: none;

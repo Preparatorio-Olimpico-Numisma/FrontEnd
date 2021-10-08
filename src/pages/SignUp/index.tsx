@@ -108,7 +108,7 @@ export function SignUp() {
       <ScreenSuccess
         ButtonMessage="Fazer login"
         description="Agora você faz parte da plataforma do Numisma. Tenha uma ótima experiência."
-        redirect="/singin"
+        redirect="/signin"
         title="Cadastro concluído"
       />
     );
@@ -168,35 +168,35 @@ export function SignUp() {
               <p>
                 <FontAwesomeIcon
                   icon={password.upperCase ? faCheckCircle : faTimesCircle}
-                  color={password.upperCase ? '#7fe465' : '#e83f5b'}
+                  color={password.upperCase ? '#04D361' : '#e83f5b'}
                 />
                 <span>Letra maiúscula</span>
               </p>
               <p>
                 <FontAwesomeIcon
                   icon={password.lowerCase ? faCheckCircle : faTimesCircle}
-                  color={password.lowerCase ? '#7fe465' : '#e83f5b'}
+                  color={password.lowerCase ? '#04D361' : '#e83f5b'}
                 />
                 <span>Letra minúscula</span>
               </p>
               <p>
                 <FontAwesomeIcon
                   icon={password.number ? faCheckCircle : faTimesCircle}
-                  color={password.number ? '#7fe465' : '#e83f5b'}
+                  color={password.number ? '#04D361' : '#e83f5b'}
                 />
                 <span>Número</span>
               </p>
               <p>
                 <FontAwesomeIcon
                   icon={password.specialChar ? faCheckCircle : faTimesCircle}
-                  color={password.specialChar ? '#7fe465' : '#e83f5b'}
+                  color={password.specialChar ? '#04D361' : '#e83f5b'}
                 />
                 <span>Caractere especial</span>
               </p>
               <p>
                 <FontAwesomeIcon
                   icon={password.length ? faCheckCircle : faTimesCircle}
-                  color={password.length ? '#7fe465' : '#e83f5b'}
+                  color={password.length ? '#04D361' : '#e83f5b'}
                 />
                 <span>Mais de 8 caracteres</span>
               </p>

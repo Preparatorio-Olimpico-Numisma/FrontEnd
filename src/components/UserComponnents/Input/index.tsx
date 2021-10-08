@@ -1,24 +1,20 @@
-import { useEffect, useRef, InputHTMLAttributes } from 'react';
+import {
+  useEffect,
+  useRef,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from 'react';
 import { useField } from '@unform/core';
 
 import './styles.scss';
 
-interface InputAttributes extends InputHTMLAttributes<HTMLInputElement> {
-  altImg?: string;
-  img?: string | undefined;
+type InputAttributes = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   name: string;
   ContainerClassName?: string;
-}
-
-interface InputMaskProps extends InputAttributes {
-  InputMaskChange: (value: string) => void;
-  mask: 'CPF' | 'CNPJ' | 'CEP' | 'PHONE' | 'DATE';
-}
+};
 
 export function Input({
-  altImg,
-  img,
   label,
   name,
   ContainerClassName,
@@ -40,19 +36,52 @@ export function Input({
     <div
       className={
         ContainerClassName
-          ? `InputContainer ${ContainerClassName}`
-          : 'InputContainer'
+          ? `InputUserContainer ${ContainerClassName}`
+          : 'InputUserContainer'
       }
     >
-      {img && altImg ? (
-        <img src={img} alt={altImg} className="ImageInput" />
-      ) : (
-        ''
-      )}
       <div>
+        <label htmlFor={label}>{label}</label>
         <input ref={inputRef} {...rest} />
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>{label}</label>
+      </div>
+    </div>
+  );
+}
+
+type TextareaAttributes = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  label: string;
+  name: string;
+  ContainerClassName?: string;
+};
+export function TextArea({
+  label,
+  name,
+  ContainerClassName,
+  ...rest
+}: TextareaAttributes) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const { registerField, fieldName } = useField(name);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: textareaRef.current,
+      path: 'value',
+    });
+  }, [fieldName, registerField]);
+
+  return (
+    <div
+      className={
+        ContainerClassName
+          ? `InputUserContainer ${ContainerClassName}`
+          : 'InputUserContainer'
+      }
+    >
+      <div>
+        <label htmlFor={name}>{label}</label>
+        <textarea ref={textareaRef} {...rest} />
       </div>
     </div>
   );
@@ -113,11 +142,14 @@ function maskPhone(value: string) {
   return phoneNumbersMask;
 }
 
+interface InputMaskProps extends InputAttributes {
+  InputMaskChange: (value: string) => void;
+  mask: 'CPF' | 'CNPJ' | 'CEP' | 'PHONE' | 'DATE';
+}
+
 export function MaskInput({
   InputMaskChange,
   mask,
-  altImg,
-  img,
   label,
   name,
   ContainerClassName,
@@ -149,23 +181,17 @@ export function MaskInput({
     <div
       className={
         ContainerClassName
-          ? `InputContainer ${ContainerClassName}`
-          : 'InputContainer'
+          ? `InputUserContainer ${ContainerClassName}`
+          : 'InputUserContainer'
       }
     >
-      {img && altImg ? (
-        <img src={img} alt={altImg} className="ImageInput" />
-      ) : (
-        ''
-      )}
       <div>
+        <label htmlFor={label}>{label}</label>
         <input
           ref={inputRef}
           {...rest}
           onChange={(event) => handleTextChange(event.currentTarget.value)}
         />
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>{label}</label>
       </div>
     </div>
   );

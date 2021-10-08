@@ -3,6 +3,7 @@ import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
 import { GetData } from './GetData';
 import { ForgotPassword } from './ForgotPassword';
+import { AlterUser } from './AlterUser';
 
 export const ApiMethods = {
   SignIn,
@@ -10,4 +11,5 @@ export const ApiMethods = {
   checkToken,
   GetData,
   ForgotPassword,
+  AlterUser,
 };

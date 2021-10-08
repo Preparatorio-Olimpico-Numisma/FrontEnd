@@ -1,0 +1,241 @@
+$Background: #f0f0f7;
+$PrimaryLighter: #9871f5;
+$PrimaryLight: #916bea;
+$Primary: #8257e5;
+$PrimaryDark: #774dd6;
+$Primary-Darker: #6842c2;
+$Secundary: #04d361;
+$SecundaryDark: #04bf58;
+$TitlePrimary: #ffffff;
+$TextPrimary: #d4c2ff;
+$TextTitle: #32264d;
+$TextComplement: #9c98a6;
+$TextBase: #6a6180;
+$LineInWhite: #e6e6f0;
+$InputBackground: #f8f8fc;
+$ButtonText: #ffffff;
+$BoxBase: #ffffff;
+$BoxFooter: #fafafc;
+
+.UserMain {
+  width: 100%;
+  position: relative;
+  background: $LineInWhite;
+}
+
+.UserContainer {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ContainerImageUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  height: 500px;
+  background: var(--Deep-Blue);
+  position: relative;
+  .imageBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .UserImage {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    svg {
+      width: 80%;
+      height: 80%;
+      path {
+        fill: var(--gray);
+      }
+    }
+  }
+}
+
+.TitleUser {
+  margin-bottom: 1rem;
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Poppins', arial, sans-serif;
+    color: $TextTitle;
+    padding: 1rem 0;
+  }
+}
+
+.line {
+  width: 100%;
+  height: 3px;
+  background-color: $LineInWhite;
+  margin: 1rem auto;
+}
+
+.NameContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.UserItem {
+  padding: 0 2%;
+  background: var(--White);
+  max-width: 736px;
+  border-radius: 2rem;
+  transform: translateY(-50px);
+}
+// Fiels
+.InputUserContainer {
+  margin-top: 1rem;
+}
+
+.PhoneNumber {
+  position: relative;
+  margin: 1rem 0;
+  > button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    border: 0;
+    background: transparent;
+    color: var(--gray);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      color: var(--Deep-Blue);
+    }
+  }
+
+  label {
+    color: $TextBase;
+    font-size: 16px;
+    font-family: 'Proppins', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+}
+
+.PhoneNumberItemContainer {
+  display: flex;
+  .InputUserContainer {
+    width: 100%;
+  }
+  button {
+    width: 20px;
+    border-radius: 50%;
+    position: relative;
+    padding-top: 50px;
+    margin-left: 5px;
+    span {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(50%, 70%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    &:hover span {
+      opacity: 1;
+    }
+    .fa-trash-alt {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  @media (max-width: 1000px) {
+    button span {
+      display: none;
+    }
+  }
+}
+
+// footert alert
+.AlertAndSaveForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  .alert {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  strong {
+    color: var(--Deep-Blue);
+  }
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  button {
+    padding: 0.8rem;
+    font-size: 1.3rem;
+    border: 1px solid $Secundary;
+    transition: all 0.3s;
+    border-radius: 0.5rem;
+    &:hover {
+      background: $SecundaryDark;
+      color: $ButtonText;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .ContainerImageUser {
+    height: 200px;
+  }
+  .NameContainer {
+    flex-direction: column;
+  }
+  .ContainerImageUser {
+    height: 250px
+  }
+  .UserItem {
+    border-radius: 1rem;
+    height: 100%;
+    transform: none;
+  }
+  .AlertAndSaveForm {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .AlertAndSaveForm {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

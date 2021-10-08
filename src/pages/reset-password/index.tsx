@@ -47,7 +47,7 @@ export function ResetPassword() {
         <ScreenSuccess
           ButtonMessage="Voltar ao login"
           description="Boa, agora é só checar o e-mail que foi enviado para você redefinir a sua senha e aproveitar os estudos."
-          redirect="/singin"
+          redirect="/signin"
           title="Redefinição enviada!"
         />
       ) : (

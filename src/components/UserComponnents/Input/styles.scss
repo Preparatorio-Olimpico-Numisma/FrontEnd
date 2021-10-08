@@ -1,0 +1,45 @@
+$Background: #f0f0f7;
+$PrimaryLighter: #9871f5;
+$PrimaryLight: #916bea;
+$Primary: #8257e5;
+$PrimaryDark: #774dd6;
+$Primary-Darker: #6842c2;
+$Secundary: #04d361;
+$SecundaryDark: #04bf58;
+$TitlePrimary: #ffffff;
+$TextPrimary: #d4c2ff;
+$TextTitle: #32264d;
+$TextComplement: #9c98a6;
+$TextBase: #6a6180;
+$LineInWhite: #e6e6f0;
+$InputBackground: #f8f8fc;
+$ButtonText: #ffffff;
+$BoxBase: #ffffff;
+$BoxFooter: #fafafc;
+
+.InputUserContainer {
+  width: 100%;
+  input, textarea {
+    width: 100%;
+    height: 60px;
+    background: $InputBackground;
+    border-radius: 8px;
+    border: 1px solid $LineInWhite;
+    padding: 0 16px;
+    color: $TextTitle;
+    font-size: 16px;
+    font-family: 'Proppins', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+    &::placeholder {
+      color: $TextTitle;
+    }
+  }
+  label {
+    color: $TextBase;
+    font-size: 16px;
+    font-family: 'Proppins', sans-serif;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+}

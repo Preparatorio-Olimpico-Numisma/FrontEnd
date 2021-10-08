@@ -1,13 +1,12 @@
 .CardCalendarContainer {
   background-color: var(--Deep-Blue);
-  padding: 2rem;
+  padding: 2%;
   height: 430px;
   border-radius: 2rem;
   width: 30%;
   .CardCalendarTitle {
     color: var(--White);
     font-family: 'Poppins';
-    font-size: 1rem;
     font-weight: bold;
     letter-spacing: 0em;
     text-align: left;
@@ -21,5 +20,11 @@
     width: 100%;
     max-height: 300px;
     overflow-y: auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  .CardCalendarContainer {
+    padding: 2rem;
   }
 }

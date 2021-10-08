@@ -71,7 +71,7 @@ export function Header() {
         <div className="login">
           <button
             onClick={() => {
-              history.push('/singin');
+              history.push('/signin');
             }}
           >
             Login
