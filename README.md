@@ -26,6 +26,7 @@ $ cd numisma
 ```
 
 Para rodar em sua máquina rode:
+
 ```bash
 # Para instalar as dependências. 
 $ yarn
@@ -35,7 +36,9 @@ $ yarn
 # Para iniciar o projeto
 $ yarn start
 ```
+
 O app estará disponível no seu browser pelo endereço [http://localhost:3000](http://localhost:3000).
 
 ## Projeto
+
 O Numisma é uma empresa que tem foco em preparar pessoas para olimíadas cíenticas.
