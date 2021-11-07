@@ -48,7 +48,7 @@ export function Footer() {
                 <img src={Twitter} alt="Twitter" />
                 <p>LinkedIn</p>
               </a>
-              <a href="https://www.instagram.com/prep_numisma/" target="blank">
+              <a href="https://www.instagram.com/numismaolimpiadas/" target="blank">
                 <img src={Instagram} alt="Instagram" />
                 <p>Instagram</p>
               </a>
