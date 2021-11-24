@@ -5,7 +5,7 @@ type CalendarProviderProps = {
   children: ReactNode;
 };
 
-type ListItem = {
+export type ListItem = {
   title: string;
   description: string;
   type: string;
