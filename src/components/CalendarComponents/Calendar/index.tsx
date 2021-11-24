@@ -19,8 +19,8 @@ function getCurrentYearMonthDay() {
 }
 
 function maxDate() {
-  const { day, month, year } = getCurrentYearMonthDay();
-  const dateFinal = new Date(year, month + 1, day);
+  const { month, year } = getCurrentYearMonthDay();
+  const dateFinal = new Date(year, month + 2, 0);
   return dateFinal;
 }
 
