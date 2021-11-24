@@ -1,0 +1,99 @@
+#Dashboard {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.black {
+  background-color: #11101df3;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+    transform-origin: bottom right;
+  }
+}
+.rotacion {
+  animation: girar 2s infinite alternate;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes bajar011 {
+  to {
+    transform: translateY(80px);
+    fill: gray;
+    height: 70px;
+  }
+}
+@keyframes subir012 {
+  to {
+    transform: translateY(-100px);
+    fill: gray;
+    height: 70px;
+  }
+}
+.animacion011 {
+  animation: bajar011 4s infinite alternate;
+  animation-timing-function: ease-in-out;
+}
+.animacion012 {
+  animation: subir012 4s ease-in-out infinite alternate;
+}
+
+@keyframes revelar {
+  to {
+    fill: white;
+  }
+}
+.rellenoblanco {
+  animation: revelar 1s ease-in-out infinite alternate;
+}
+.order01 {
+}
+.order02 {
+  animation-delay: 0.2s;
+}
+.order03 {
+  animation-delay: 0.4s;
+}
+.order04 {
+  animation-delay: 0.6s;
+}
+
+@keyframes rotacion2 {
+  to {
+    transform: rotate(360deg);
+    opacity: 0.2;
+  }
+}
+.girar2 {
+  animation: rotacion2 2s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+@keyframes rotacion3 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.girar3 {
+  animation: rotacion3 3s cubic-bezier(0.67, 0.09, 0.01, 1.68) infinite
+    alternate;
+  transform-origin: center center;
+}

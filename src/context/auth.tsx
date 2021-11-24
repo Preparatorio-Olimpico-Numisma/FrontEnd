@@ -28,7 +28,9 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const history = useHistory();
 
   function SignOut() {
-    localStorage.clear();
+    localStorage.removeItem('@Numisma.User');
+    localStorage.removeItem('@Numisma.AccessToken');
+    localStorage.removeItem('@Numisma.RefreshToken');
     setUser(null);
   }
 
@@ -49,9 +51,9 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
         }
         setIsLoad(false);
       } catch (error: any) {
-        SignOut();
         history.replace('/');
         setIsLoad(false);
+        SignOut();
       }
     })();
   }, [history]);
@@ -63,6 +65,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }, [user]);
 
   async function SignIn(email: string, password: string) {
+    setIsLoad(true);
     const json = await ApiMethods.SignIn({ email, password });
 
     if (!json.access) throw new Error('Email ou senha incorretos');
@@ -78,6 +81,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     localStorage.setItem('@Numisma.RefreshToken', refresh);
 
     setUser(data);
+    setIsLoad(false);
     history.replace('/');
   }
 
@@ -87,7 +91,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     await SignIn(data.email, data.password);
   }
 
-  async function AlterUser(data: AlterUserProps): Promise<void> {
+  async function AlterUser(data: AlterUserProps) {
     const { sucess } = await ApiMethods.AlterUser(data);
     if (!sucess) throw new Error('Não foi possível alterar o usuário');
     setUser(data);

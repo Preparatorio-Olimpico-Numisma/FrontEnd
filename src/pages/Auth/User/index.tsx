@@ -97,10 +97,6 @@ export function User() {
           if (isValid) throw new Error(isValid);
         }
       }, []);
-      const phones = phonesNumbers.map((phone) => {
-        const phoneNumber = phone?.match(/[0-9]/g)?.join('');
-        return phoneNumber;
-      });
       await AlterUser({
         id: user?.id,
         first_name: data.firstName,
@@ -113,7 +109,7 @@ export function User() {
         address: user?.address,
         state: user?.state,
         city: user?.city,
-        phonesnumber: phones,
+        phonesnumber: phonesNumbers,
       });
     } catch (error: any) {
       setErrorMessage(error.message);
