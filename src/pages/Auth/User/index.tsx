@@ -34,7 +34,9 @@ interface userData {
 export function User() {
   const { user, AlterUser } = useAuthContext();
   const [userProfile, setUserProfile] = useState(user);
-  const [phonesNumbers, setPhonesNumbers] = useState([user?.phonesnumber]);
+  const [phonesNumbers, setPhonesNumbers] = useState(
+    user?.phonesnumber || [null]
+  );
   const [errorMessage, setErrorMessage] = useState('');
 
   function addPhoneNumber() {
@@ -97,10 +99,6 @@ export function User() {
           if (isValid) throw new Error(isValid);
         }
       }, []);
-      const phones = phonesNumbers.map((phone) => {
-        const phoneNumber = phone?.match(/[0-9]/g)?.join('');
-        return phoneNumber;
-      });
       await AlterUser({
         id: user?.id,
         first_name: data.firstName,
@@ -113,7 +111,7 @@ export function User() {
         address: user?.address,
         state: user?.state,
         city: user?.city,
-        phonesnumber: phones,
+        phonesnumber: phonesNumbers,
       });
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -202,7 +200,7 @@ export function User() {
                 </button>
                 <div className="line" />
                 <div className="PhoneNumberItem">
-                  {phonesNumbers?.map((phone, index) => {
+                  {phonesNumbers?.map((phone: string, index: number) => {
                     return (
                       <div className="PhoneNumberItemContainer" key={index}>
                         <MaskInput

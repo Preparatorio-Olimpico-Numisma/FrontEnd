@@ -29,11 +29,19 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
   function SignOut() {
     localStorage.clear();
+    localStorage.removeItem('@Numisma.RefreshToken');
+    localStorage.removeItem('@Numisma.AccessToken');
+    localStorage.removeItem('@Numisma.Timelimt');
+    localStorage.removeItem('@Numisma.User');
     setUser(null);
   }
 
   useEffect(() => {
     (async () => {
+      const dateString = localStorage.getItem('@Numisma.Timelimt');
+      const expireDate = new Date(dateString || new Date().toString());
+      const dateNow = new Date();
+      const isExpired = dateNow.getTime() > expireDate.getTime();
       try {
         setIsLoad(true);
         const UserString = localStorage.getItem('@Numisma.User');
@@ -42,16 +50,18 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
         if (UserString && AccessToken && RefreshToken) {
           const userJson = JSON.parse(UserString);
-          const access = await ApiMethods.checkToken(RefreshToken);
+          if (isExpired) {
+            const access = await ApiMethods.checkToken(RefreshToken);
+            localStorage.setItem('@Numisma.AccessToken', access);
+            BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
+          }
           setUser(userJson);
-          localStorage.setItem('@Numisma.AccessToken', access);
-          BaseApi.defaults.headers.Authorization = `Bearer ${access}`;
         }
         setIsLoad(false);
       } catch (error: any) {
-        SignOut();
         history.replace('/');
         setIsLoad(false);
+        SignOut();
       }
     })();
   }, [history]);
@@ -63,6 +73,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }, [user]);
 
   async function SignIn(email: string, password: string) {
+    setIsLoad(true);
     const json = await ApiMethods.SignIn({ email, password });
 
     if (!json.access) throw new Error('Email ou senha incorretos');
@@ -76,9 +87,13 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     localStorage.setItem('@Numisma.User', JSON.stringify(data));
     localStorage.setItem('@Numisma.AccessToken', access);
     localStorage.setItem('@Numisma.RefreshToken', refresh);
+    const currentDate = new Date();
+    const last5minutes = new Date(currentDate.getTime() + 5 * 60 * 1000);
+    localStorage.setItem('@Numisma.Timelimt', last5minutes.toDateString());
 
     setUser(data);
     history.replace('/');
+    setIsLoad(false);
   }
 
   async function SignUp(data: SignUpProps): Promise<void> {
@@ -88,9 +103,11 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }
 
   async function AlterUser(data: AlterUserProps): Promise<void> {
+    setIsLoad(true);
     const { sucess } = await ApiMethods.AlterUser(data);
     if (!sucess) throw new Error('Não foi possível alterar o usuário');
     setUser(data);
+    setIsLoad(false);
   }
   return (
     <AuthContext.Provider
