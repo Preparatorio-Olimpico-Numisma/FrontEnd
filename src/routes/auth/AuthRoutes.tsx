@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom';
 import { SidebarContextProvider } from '../../context/sidebar';
-import { CalendarComponent } from '../../pages/Pages-Auth/Calendar';
+import { CalendarComponent } from '../../pages/Auth/Calendar';
 
-import { Dashboard } from '../../pages/Pages-Auth/Dashboard';
-import { User } from '../../pages/Pages-Auth/User';
+import { Dashboard } from '../../pages/Auth/Dashboard';
+import { User } from '../../pages/Auth/User';
 
 export function AuthRoutes() {
   return (
