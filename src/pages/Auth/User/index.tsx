@@ -34,7 +34,9 @@ interface userData {
 export function User() {
   const { user, AlterUser } = useAuthContext();
   const [userProfile, setUserProfile] = useState(user);
-  const [phonesNumbers, setPhonesNumbers] = useState([user?.phonesnumber]);
+  const [phonesNumbers, setPhonesNumbers] = useState(
+    user?.phonesnumber || [null]
+  );
   const [errorMessage, setErrorMessage] = useState('');
 
   function addPhoneNumber() {
@@ -198,7 +200,7 @@ export function User() {
                 </button>
                 <div className="line" />
                 <div className="PhoneNumberItem">
-                  {phonesNumbers?.map((phone, index) => {
+                  {phonesNumbers?.map((phone: string, index: number) => {
                     return (
                       <div className="PhoneNumberItemContainer" key={index}>
                         <MaskInput

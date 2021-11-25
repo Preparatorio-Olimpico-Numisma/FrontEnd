@@ -169,6 +169,7 @@
 
 .ChildrenContent {
   position: absolute;
+  z-index: -1;
   height: 100%;
   width: calc(100% - 240px);
   left: 240px;
